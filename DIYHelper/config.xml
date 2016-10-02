@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Hello World</name>
+    <name>DIY Helper</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        --- Need to come up with the description ---
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="neil.jones@mavs.uta.edu" href="neil.jones@mavs.uta.edu">
+        DIY Helper Team
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />

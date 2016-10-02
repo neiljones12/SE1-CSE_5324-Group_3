@@ -82,12 +82,12 @@
     <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <allow-intent href="market:*" />
-    <name>Hello World</name>
+    <name>DIY Helper</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        --- Need to come up with the description ---
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="neil.jones@mavs.uta.edu" href="neil.jones@mavs.uta.edu">
+        DIY Helper Team
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
