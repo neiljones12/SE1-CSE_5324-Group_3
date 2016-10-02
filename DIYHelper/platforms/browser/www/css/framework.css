@@ -4308,8 +4308,8 @@ ul.tabs li.current{
 
 .pageapp-login{width:300px;    margin:0px auto; padding-top:60px;}
 @media(max-width:360px){
-    .pageapp-login-logo{display:none;}
-    .pageapp-login-social{display:none;}    
+    .pageapp-login-logo{width:40px; margin:0px auto 0px auto;}
+    /*.pageapp-login-social{display:none;}  */  
     .pageapp-login-input input{ height:40px!important; line-height:40px!important; }    
     .pageapp-login-input i{ height:40px!important; line-height:40px!important;}
 }
