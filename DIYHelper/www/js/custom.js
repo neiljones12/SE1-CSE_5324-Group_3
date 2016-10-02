@@ -3,11 +3,11 @@ $(document).ready(function () {
     function init_template(){//Class is vital to run AJAX Pages 
         
         //Sliding Menu
-        $('.open-sliding-menu, .close-sliding-menu').click(function(){
+        /*$('.open-sliding-menu, .close-sliding-menu').click(function(){
             $(this).toggleClass('active-open-sliding-menu');
             $('.sliding-menu, .sliding-content').toggleClass('sliding-menu-active');
             $('.sliding-content').toggleClass('close-sliding-content')
-        });
+        });*/
         
         //Header Settings
         $('.open-header-menu, .close-header-menu').click(function(){
