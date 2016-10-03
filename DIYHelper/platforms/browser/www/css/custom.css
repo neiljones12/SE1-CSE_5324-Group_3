@@ -426,7 +426,7 @@ body.inner_page .bg_parallax {
     white-space: normal;
 } 
 .start_descrition h1 {
-    font-size: 50px;
+    /*font-size: 50px;*/
     text-transform: uppercase;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
@@ -3103,7 +3103,7 @@ body.inner_page .bg_parallax {
         margin: 0 auto;
     }
     .header_promo a {display: none;}
-    .start_descrition {margin-top: 20px;}
+    /*.start_descrition {margin-top: 20px;}*/
     .start_descrition h1 span {
         margin: 20px auto;
     }
