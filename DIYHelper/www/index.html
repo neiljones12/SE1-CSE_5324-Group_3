@@ -72,11 +72,11 @@
                                     <i class="login-icon fa fa-lock"></i>
                                     <input type="password" value="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'">
                                 </div>
-                                <div class="pageapp-login-links">
+                                <!--<div class="pageapp-login-links">
                                     <a href="#" class="page-login-forgot"><i class="fa fa-eye"></i>Forgot Credentials</a>
                                     <a href="#" class="page-login-create">Create Account<i class="fa fa-user"></i></a>
                                     <div class="clear"></div>
-                                </div>
+                                </div>-->
 
                                 <a href="core/dashboard.html" class="button button-green button-icon button-full half-top full-bottom"><i class="fa fa-angle-right"></i>Login</a>
 
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
- 
+
             <div class="share-bottom share-dark">
                 <h3>Share Page</h3>
                 <div class="share-socials-bottom">
@@ -126,8 +126,17 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/plugins.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript">
+        function search() { 
+         window.location = "../core/search.html";
+        }
+        function searchResults() { 
+         window.location = "../core/results.html";
+        }
+    </script>
     <script type="text/javascript">
         app.initialize();
     </script>

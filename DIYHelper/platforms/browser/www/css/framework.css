@@ -7166,7 +7166,7 @@ html, body {overflow-x:hidden;}
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
-.header-clear #page-content-scroll{padding-top:60px!important;}
+.header-clear #page-content-scroll{padding-top:0px!important;}
 .header-clear-large #page-content-scroll{padding-top:80px!important;}
 
 .sidebar-tap-close{
@@ -9464,4 +9464,11 @@ button.swiper-pagination-bullet {
 	line-height: 50px;
     font-weight:500;
 	font-family: 'Roboto', sans-serif;
+}
+
+.search {
+    background: url(../img/pictures/1.jpg);
+    width: 100%;
+    background-position: center;
+    position: relative;
 }
