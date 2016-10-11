@@ -1,0 +1,25 @@
+<div id="page-transitions" ng-init="searchInit()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div>
+
+    <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
+        <div id="page-content" class="page-content search">
+            <div class="top_promo_block" id="promo_head" style="height: 444px;">
+                <div class="start_descrition">
+                    <h1 style="padding-top:50px">Product Search<span></span></h1>
+                    <span>What are you searching for?</span>
+                    <div class="search_promo">
+                        <div class="input-group">
+                            <input type="text" ng-model="searchText" class="form-control" aria-label="Search">
+                            <div class="input-group-btn btn_promo_search">
+                                <button type="submit" class="btn btn-success" id="submit">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </form>
+</div>
