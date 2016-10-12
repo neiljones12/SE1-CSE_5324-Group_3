@@ -1,36 +1,19 @@
-/*
- * Copyright (c) 2012, Intel Corporation. All rights reserved.
- * File revision: 31 October 2012
- * Please see http://software.intel.com/html5/license/samples 
- * and the included README.md file for license terms and conditions.
- */
+ #error, #results{
+            display: none;
+        }
 
-#compass {
-    width:200px;
-    height:200px;
-    border-radius:200px;
-    background:url(../img/compass_rose.png);
-    margin-left:auto;
-    margin-right:auto;
-}
+        #arrow{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: 50% 50% no-repeat; 
+            background-size: 30px 30px;
+            background-image: url('arrow.png');
+            top: 0;
+            left: 50%;
+            margin: 30px 0 0 -15px;
+        }
 
-#needle {
-    position:absolute;
-    background:url(../img/needle.png);
-    width:24px;
-    height:200px;
-    z-index:1000;
-    top:0px;
-    left:50%;
-    -webkit-transform:translateX(-12px);    
-}
-
-#info-panel {
-    color: black;
-    font-size:x-large;
-    width:90px;
-}
-
-div.ui-slider-switch {
-    width: 46%;
-}
+        #results .text{
+            margin-top: 100px;
+        }

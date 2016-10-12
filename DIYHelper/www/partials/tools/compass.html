@@ -1,20 +1,23 @@
 ﻿<div id="page-transitions" ng-init="compassInit()">
-    <div data-role="header">
-        <h1>Compass</h1>
+    <div id="results">
+        <div id="arrow"></div>
+        <div class="text">
+            <p>Distance to destination: <span id="distance"></span> metres</p>
+            <p>Bearing to destination: <span id="bearing"></span> degrees</p>
+            <p>Current heading: <span id="heading"></span> degrees</p>
+            <p>Difference in heading and bearing: <span id="difference"></span> degrees</p>
+        </div>
     </div>
-    <div data-role="content">
-        <div id=compass></div>
-        <div id=needle></div>
-        <div id=info-panel></div>
+
+    <p id="error"></p>
+
+    <h2>Destination</h2>
+    <div>
+        <label for="target-lat">Latitude: </label>
+        <input id="target-lat" value="50.623966949462" />
     </div>
-    <div data-role="footer" data-position="fixed">
-        <select data-role="slider" name="control" id="control">
-            <option value="on">Run</option>
-            <option value="off">Stop</option>
-        </select>
-        <select data-role="slider" name="freeze" id="freeze">
-            <option value="on">Needle Free</option>
-            <option value="off">North Freeze</option>
-        </select>
+    <div>
+        <label for="target-lon">Longitude: </label>
+        <input id="target-lon" value="-4.7256830197787" />
     </div>
 </div> 
