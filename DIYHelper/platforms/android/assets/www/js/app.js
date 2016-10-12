@@ -3,7 +3,10 @@ angular.module('App', ['ngRoute', 'App.services', 'App.controllers'])
         $routeProvider
         .when('/', {
             controller: 'LoginCtrl',
-            templateUrl: 'partials/Login.html'
+            templateUrl: 'partials/login.html'
+        }).when('/login', {
+            controller: 'LoginCtrl',
+            templateUrl: 'partials/login.html'
         }).when('/dashboard', {
             controller: 'DashboardCtrl',
             templateUrl: 'partials/dashboard.html'
@@ -20,5 +23,5 @@ angular.module('App', ['ngRoute', 'App.services', 'App.controllers'])
             controller: 'ToolsCtrl',
             templateUrl: 'partials/tools/compass.html'
         })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/login' });
     });
