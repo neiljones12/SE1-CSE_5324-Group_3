@@ -2,7 +2,7 @@
     <img class="page-preload" src="../img/preload.gif">
 </div>
 
-<div id="page-content" class="page-content search">
+<div id="page-content" class="page-content search" ng-controller="ToolsCtrl">
     <div id="page-content-scroll">
 
         <div class="landing-homepage">
@@ -20,7 +20,7 @@
                     <!-- Left Top Menu -->
                     <ul>
                         <li>
-                            <a href="index.html">
+                            <a ng-click="tutorialLoad()">
                                 <i class="fa fa-home bg-red-dark"></i>
                                 <em>Tutorial</em>
                             </a>
@@ -32,9 +32,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="gallery-square.html">
+                            <a ng-click="compassLoad()">
                                 <i class="fa fa-compass bg-blue-dark"></i>
-                                <em>Compas</em>
+                                <em>Compass</em>
                             </a>
                         </li>
                         <li>

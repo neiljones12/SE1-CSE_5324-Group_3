@@ -54,7 +54,31 @@ angular.module('App.controllers', [])
         };
     }])
     //Tools controller
-    .controller('ToolsCtrl', ['$scope', function ($scope) {
+    .controller('ToolsCtrl', ['$scope', '$window', function ($scope, $window) {
         $scope.toolsInit = function () { 
-        }; 
+        };
+
+        // --- Tutorial ---
+        $scope.tutorialLoad = function () { 
+            var landingUrl = "http://" + $window.location.host + "#/tutorials"; 
+            $window.location.href = landingUrl;
+        };
+
+        $scope.tutorialsInit = function () {
+
+        };
+
+        $scope.submitTutorialSearch = function () {
+
+        };
+
+        // --- Compass --
+        $scope.compassLoad = function () { 
+            var landingUrl = "http://" + $window.location.host + "#/compass"; 
+            $window.location.href = landingUrl;
+        };
+
+        $scope.compassInit = function () {
+
+        };
     }]);

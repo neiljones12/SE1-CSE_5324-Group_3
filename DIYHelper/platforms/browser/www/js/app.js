@@ -13,6 +13,12 @@ angular.module('App', ['ngRoute', 'App.services', 'App.controllers'])
         }).when('/tools', {
                 controller: 'ToolsCtrl',
                 templateUrl: 'partials/tools.html'
-            })
+        }).when('/tutorials', {
+            controller: 'ToolsCtrl',
+            templateUrl: 'partials/tools/tutorials.html'
+        }).when('/compass', {
+            controller: 'ToolsCtrl',
+            templateUrl: 'partials/tools/compass.html'
+        })
         .otherwise({ redirectTo: '/' });
     });

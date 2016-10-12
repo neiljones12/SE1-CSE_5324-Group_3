@@ -5,6 +5,7 @@ angular.module('App.controllers', [])
     //Dashboard controller
     .controller('DashboardCtrl', ['$scope', '$window', function ($scope, $window) {
         $scope.loadDashbaord = function () {
+            //To enable slider on homescreen
             var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
@@ -53,7 +54,31 @@ angular.module('App.controllers', [])
         };
     }])
     //Tools controller
-    .controller('ToolsCtrl', ['$scope', function ($scope) {
+    .controller('ToolsCtrl', ['$scope', '$window', function ($scope, $window) {
         $scope.toolsInit = function () { 
-        }; 
+        };
+
+        // --- Tutorial ---
+        $scope.tutorialLoad = function () { 
+            var landingUrl = "http://" + $window.location.host + "#/tutorials"; 
+            $window.location.href = landingUrl;
+        };
+
+        $scope.tutorialsInit = function () {
+
+        };
+
+        $scope.submitTutorialSearch = function () {
+
+        };
+
+        // --- Compass --
+        $scope.compassLoad = function () { 
+            var landingUrl = "http://" + $window.location.host + "#/compass"; 
+            $window.location.href = landingUrl;
+        };
+
+        $scope.compassInit = function () {
+
+        };
     }]);
