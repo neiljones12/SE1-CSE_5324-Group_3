@@ -3,7 +3,7 @@ angular.module('App.controllers', [])
 
     }])
     //Dashboard controller
-    .controller('DashboardCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('DashboardCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
         $scope.loadDashbaord = function () {
             //To enable slider on homescreen
             var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
@@ -36,12 +36,10 @@ angular.module('App.controllers', [])
             });
         };
         $scope.search = function () {
-            var landingUrl = "http://" + $window.location.host + "#/search";
-            $window.location.href = landingUrl;
+            $location.path("/search"); 
         };
         $scope.tools = function () {
-            var landingUrl = "http://" + $window.location.host + "#/tools";
-            $window.location.href = landingUrl;
+            $location.path("/tools");
         };
     }])
     //Search Controller
@@ -54,14 +52,13 @@ angular.module('App.controllers', [])
         };
     }])
     //Tools controller
-    .controller('ToolsCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('ToolsCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
         $scope.toolsInit = function () { 
         };
 
         // --- Tutorial ---
-        $scope.tutorialLoad = function () { 
-            var landingUrl = "http://" + $window.location.host + "#/tutorials"; 
-            $window.location.href = landingUrl;
+        $scope.tutorialLoad = function () {
+            $location.path("/tutorials");
         };
 
         $scope.tutorialsInit = function () {
@@ -73,9 +70,8 @@ angular.module('App.controllers', [])
         };
 
         // --- Compass --
-        $scope.compassLoad = function () { 
-            var landingUrl = "http://" + $window.location.host + "#/compass"; 
-            $window.location.href = landingUrl;
+        $scope.compassLoad = function () {
+            $location.path("/compass");
         };
 
         $scope.compassInit = function () {
