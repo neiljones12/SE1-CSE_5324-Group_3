@@ -3,7 +3,44 @@
 /*////////////////////////////////////////////////////////////*/
 
 
+.dashboard-img-2a {
+    border-radius:200px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    z-index: 1;
+    background-image: url('../img/pictures/1t.jpg');
+    -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+}
 
+.dashboard-img-2b {
+    border-radius:200px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    z-index: 1;
+    background-image: url('../img/pictures/6t.jpg');
+    -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+}
+
+.dashboard-img-2c {
+    border-radius:200px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    z-index: 1;
+    background-image: url('../img/pictures/2t.jpg');
+    -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
+}
 
 
 .framebuy {
