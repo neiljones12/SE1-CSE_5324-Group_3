@@ -1,6 +1,79 @@
 angular.module('App.controllers', [])
-    .controller('LoginCtrl', ['$scope', function ($scope) {
+    .controller('LoginCtrl', ['$scope','ngFB', function ($scope, ngFB) {
 
+        // Defaults to sessionStorage for storing the Facebook token
+        //openFB.init({ appId: '1071160422999729' }); 
+        ngFB.init({ appId: '465374093524857' });
+        //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+        //  openFB.init({appId: 'YOUR_FB_APP_ID', tokenStore: window.localStorage});
+
+        $scope.facebookLogin = function () {
+            ngFB.login(
+                    function (response) {
+                        if (response.status === 'connected') {
+                            alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
+                        } else {
+                            alert('Facebook login failed: ' + response.error);
+                        }
+                    }, { scope: 'email,read_stream,publish_actions' });
+        }
+
+        $scope.getInfo = function () {
+            openFB.api({
+                path: '/me',
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    document.getElementById("userName").innerHTML = data.name;
+                    document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+                },
+                error: errorHandler
+            });
+        }
+
+        $scope.share = function () {
+            openFB.api({
+                method: 'POST',
+                path: '/me/feed',
+                params: {
+                    message: document.getElementById('Message').value || 'Testing Facebook APIs'
+                },
+                success: function () {
+                    alert('the item was posted on Facebook');
+                },
+                error: errorHandler
+            });
+        }
+
+        $scope.readPermissions = function () {
+            openFB.api({
+                method: 'GET',
+                path: '/me/permissions',
+                success: function (result) {
+                    alert(JSON.stringify(result.data));
+                },
+                error: errorHandler
+            });
+        }
+
+        $scope.revoke = function () {
+            openFB.revokePermissions(
+                    function () {
+                        alert('Permissions revoked');
+                    },
+                    errorHandler);
+        }
+
+        $scope.logout = function () {
+            openFB.logout(
+                    function () {
+                        alert('Logout successful');
+                    },
+                    errorHandler);
+        }
+
+        function errorHandler(error) {
+            alert(error.message);
+        }
     }])
     //Dashboard controller
     .controller('DashboardCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
@@ -36,7 +109,7 @@ angular.module('App.controllers', [])
             });
         };
         $scope.search = function () {
-            $location.path("/search"); 
+            $location.path("/search");
         };
         $scope.tools = function () {
             $location.path("/tools");
@@ -53,7 +126,7 @@ angular.module('App.controllers', [])
     }])
     //Tools controller
     .controller('ToolsCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
-        $scope.toolsInit = function () { 
+        $scope.toolsInit = function () {
         };
 
         // --- Tutorial ---

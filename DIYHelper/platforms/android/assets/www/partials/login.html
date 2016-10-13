@@ -1,4 +1,4 @@
-<div id="page-transitions">
+<div id="page-transitions" ng-controller="LoginCtrl">
 
     <div class="page-preloader page-preloader-dark">
         <img class="page-preload" src="img/preload.gif">
@@ -31,7 +31,7 @@
 
                         <div class="decoration"></div>
                         <div class="pageapp-login-social">
-                            <a href="#" class="button button-icon button-full facebook-bg"><i class="fa fa-facebook"></i>Login with Facebook</a>
+                            <a href="#" ng-click="facebookLogin()" class="button button-icon button-full facebook-bg"><i class="fa fa-facebook"></i>Login with Facebook</a>
                             <a href="#" class="button button-icon button-full twitter-bg"><i class="fa fa-twitter"></i>Login with Facebook</a>
                         </div>
                     </div>

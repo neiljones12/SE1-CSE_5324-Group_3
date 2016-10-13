@@ -1,4 +1,4 @@
-angular.module('App', ['ngRoute', 'App.services', 'App.controllers'])
+angular.module('App', ['ngRoute', 'App.services', 'App.controllers','ngOpenFB'])
     .config(function ($routeProvider) {
         $routeProvider
         .when('/', {
