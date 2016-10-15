@@ -79,12 +79,6 @@ angular.module('App.controllers', [])
     .controller('DashboardCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', function ($scope, $window, $location, $http, $localStorage, $sce) {
         $scope.loadDashbaord = function () {
 
-            $scope.selectedData = null;
-            $scope.datas = null;
-            $http.get('../data/data.json').success(function (data) {
-                $scope.datas = data;
-            });
-
             //To enable slider on homescreen
             var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
                 pagination: '.swiper-pagination',
@@ -131,10 +125,48 @@ angular.module('App.controllers', [])
         $scope.loadProjects = function () {
 
             $scope.selectedData = null;
-            $scope.datas = null;
-            $http.get('../data/data.json').success(function (data) {
-                $scope.datas = data;
-            });
+            $scope.datas = [
+  {
+      "id": 1,
+      "title": "Pumpkin carving",
+      "difficulty": "Beginer",
+      "time": "30 min",
+      "cost": "10-30$",
+      "youtube": "kzc4JxgE43k",
+      "description": "Artist Ray Villafane shares techniques and tricks for carving lifelike faces into Halloween pumpkins.",
+      "requirements": [
+        {
+            "name": "cordless Drill"
+        },
+        {
+            "name": "Jab saw"
+        },
+        {
+            "name": "Spade bits"
+        },
+        {
+            "name": "Wet/Dry Vac"
+        },
+        {
+            "name": "Hammer"
+        },
+        {
+            "name": "Wood chisel"
+        },
+        {
+            "name": "Eye protection"
+        },
+        {
+            "name": "Gloves"
+        },
+        {
+            "name": "Pumpkin"
+        }
+      ]
+  }];
+            //$http.get('js/data.json').success(function (data) {
+            //    $scope.datas = data;
+            //});
         };
         $scope.onSelect = function (selection) {
             console.log(selection);
