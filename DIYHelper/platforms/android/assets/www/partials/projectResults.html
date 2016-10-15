@@ -1,0 +1,34 @@
+﻿<div id="page-transitions" ng-init="loadProjectResults()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div>
+
+    <div class="page-timeline-1 content">
+        <h1 class="timeline-heading">{{title}}</h1><br />
+        <small>{{description}}</small> <hr />
+        <div class="timeline-deco"></div>
+        <div class="timeline-block-left">
+            <i class="fa fa-youtube-play"></i>
+        </div>
+        <div class="timeline-block-right">
+            <div class="responsive-video full-bottom">
+                <!--<iframe src="{{youtube}}"></iframe>-->
+                <youtube-video video-id="youtube"></youtube-video>
+            </div>
+        </div>
+        <div class="timeline-block-left">
+            <i class="fa fa-square-o"></i>
+        </div>
+        <div class="timeline-block-right"> 
+            <span>Difficulty: </span>{{difficulty}}<br/>
+            <span>Time: </span>{{time}}<br />
+            <span>Cost: </span>{{cost}}
+            <hr />
+            <h2>What will you need</h2>
+            <div ng-repeat="r in requirements">
+                <div>{{r.name}}</div><br />
+            </div>
+        </div>
+    </div>
+</div>

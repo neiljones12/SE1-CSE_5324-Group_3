@@ -1,5 +1,5 @@
 angular.module('App.controllers', [])
-    .controller('LoginCtrl', ['$scope','ngFB', function ($scope, ngFB) {
+    .controller('LoginCtrl', ['$scope', 'ngFB', function ($scope, ngFB) {
 
         // Defaults to sessionStorage for storing the Facebook token
         //openFB.init({ appId: '1071160422999729' }); 
@@ -76,8 +76,15 @@ angular.module('App.controllers', [])
         }
     }])
     //Dashboard controller
-    .controller('DashboardCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
+    .controller('DashboardCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', function ($scope, $window, $location, $http, $localStorage, $sce) {
         $scope.loadDashbaord = function () {
+
+            $scope.selectedData = null;
+            $scope.datas = null;
+            $http.get('../data/data.json').success(function (data) {
+                $scope.datas = data;
+            });
+
             //To enable slider on homescreen
             var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
                 pagination: '.swiper-pagination',
@@ -108,6 +115,10 @@ angular.module('App.controllers', [])
                 }
             });
         };
+        
+        $scope.projects = function () {
+            $location.path("/projects");
+        };
         $scope.search = function () {
             $location.path("/search");
         };
@@ -115,7 +126,42 @@ angular.module('App.controllers', [])
             $location.path("/tools");
         };
     }])
-    //Search Controller
+    //Projects controller
+    .controller('ProjectsCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', function ($scope, $window, $location, $http, $localStorage, $sce) {
+        $scope.loadProjects = function () {
+
+            $scope.selectedData = null;
+            $scope.datas = null;
+            $http.get('../data/data.json').success(function (data) {
+                $scope.datas = data;
+            });
+        };
+        $scope.onSelect = function (selection) {
+            console.log(selection);
+            $scope.selectedData = selection;
+        };
+
+        $scope.clearInput = function () {
+            $scope.$broadcast('simple-autocomplete:clearInput');
+        };
+
+        $scope.submitSearch = function () {
+            $localStorage.selectedData = $scope.selectedData
+            $location.path("/projectResults");
+        };
+
+        $scope.loadProjectResults = function () {
+            $scope.title = $localStorage.selectedData.title;
+            $scope.difficulty = $localStorage.selectedData.difficulty;
+            $scope.youtube = $localStorage.selectedData.youtube;
+            $scope.description = $localStorage.selectedData.description;
+            $scope.difficulty = $localStorage.selectedData.difficulty;
+            $scope.time = $localStorage.selectedData.time;
+            $scope.cost = $localStorage.selectedData.cost;
+            $scope.requirements = $localStorage.selectedData.requirements;
+        };
+    }])
+        //Search Controller
     .controller('SearchCtrl', ['$scope', function ($scope) {
         $scope.searchInit = function () {
             $scope.searchText = "";

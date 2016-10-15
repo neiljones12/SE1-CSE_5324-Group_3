@@ -1,4 +1,4 @@
-angular.module('App', ['ngRoute', 'App.services', 'App.controllers','ngOpenFB'])
+angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.services', 'App.controllers', 'youtube-embed','ngOpenFB'])
     .config(function ($routeProvider) {
         $routeProvider
         .when('/', {
@@ -10,12 +10,18 @@ angular.module('App', ['ngRoute', 'App.services', 'App.controllers','ngOpenFB'])
         }).when('/dashboard', {
             controller: 'DashboardCtrl',
             templateUrl: 'partials/dashboard.html'
+        }).when('/projects', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projects.html'
+        }).when('/projectResults', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectResults.html'
         }).when('/search', {
             controller: 'SearchCtrl',
             templateUrl: 'partials/search.html'
         }).when('/tools', {
-                controller: 'ToolsCtrl',
-                templateUrl: 'partials/tools.html'
+            controller: 'ToolsCtrl',
+            templateUrl: 'partials/tools.html'
         }).when('/tutorials', {
             controller: 'ToolsCtrl',
             templateUrl: 'partials/tools/tutorials.html'

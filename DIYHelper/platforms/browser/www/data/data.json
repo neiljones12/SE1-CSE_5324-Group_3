@@ -1,0 +1,39 @@
+﻿[
+  {
+    "id": 1,
+    "title": "Pumpkin carving",
+    "difficulty": "Beginer",
+    "time": "30 min",
+    "cost": "10-30$",
+    "youtube": "kzc4JxgE43k",
+    "description": "Artist Ray Villafane shares techniques and tricks for carving lifelike faces into Halloween pumpkins.",
+    "requirements": [
+      {
+        "name": "cordless Drill"
+      },
+      {
+        "name": "Jab saw"
+      },
+      {
+        "name": "Spade bits"
+      },
+      {
+        "name": "Wet/Dry Vac"
+      },
+      {
+        "name": "Hammer"
+      },
+      {
+        "name": "Wood chisel"
+      },
+      {
+        "name": "Eye protection"
+      },
+      {
+        "name": "Gloves"
+      },
+      {
+        "name": "Pumpkin"
+      }
+    ]
+  }]
