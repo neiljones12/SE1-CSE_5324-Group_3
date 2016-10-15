@@ -109,7 +109,7 @@ angular.module('App.controllers', [])
                 }
             });
         };
-        
+
         $scope.projects = function () {
             $location.path("/projects");
         };
@@ -125,45 +125,45 @@ angular.module('App.controllers', [])
         $scope.loadProjects = function () {
 
             $scope.selectedData = null;
-            $scope.datas = [
-  {
-      "id": 1,
-      "title": "Pumpkin carving",
-      "difficulty": "Beginer",
-      "time": "30 min",
-      "cost": "10-30$",
-      "youtube": "kzc4JxgE43k",
-      "description": "Artist Ray Villafane shares techniques and tricks for carving lifelike faces into Halloween pumpkins.",
-      "requirements": [
-        {
-            "name": "cordless Drill"
-        },
-        {
-            "name": "Jab saw"
-        },
-        {
-            "name": "Spade bits"
-        },
-        {
-            "name": "Wet/Dry Vac"
-        },
-        {
-            "name": "Hammer"
-        },
-        {
-            "name": "Wood chisel"
-        },
-        {
-            "name": "Eye protection"
-        },
-        {
-            "name": "Gloves"
-        },
-        {
-            "name": "Pumpkin"
-        }
-      ]
-  }];
+            $scope.datas = [{
+                "id": 1,
+                "title": "Pumpkin carving",
+                "class":"pumpkin",
+                "difficulty": "Beginer",
+                "time": "30 min",
+                "cost": "10-30$",
+                "youtube": "kzc4JxgE43k",
+                "description": "Artist Ray Villafane shares techniques and tricks for carving lifelike faces into Halloween pumpkins.",
+                "requirements": [
+                  {
+                      "name": "cordless Drill"
+                  },
+                  {
+                      "name": "Jab saw"
+                  },
+                  {
+                      "name": "Spade bits"
+                  },
+                  {
+                      "name": "Wet/Dry Vac"
+                  },
+                  {
+                      "name": "Hammer"
+                  },
+                  {
+                      "name": "Wood chisel"
+                  },
+                  {
+                      "name": "Eye protection"
+                  },
+                  {
+                      "name": "Gloves"
+                  },
+                  {
+                      "name": "Pumpkin"
+                  }
+                ]
+            }];
             //$http.get('js/data.json').success(function (data) {
             //    $scope.datas = data;
             //});
@@ -182,7 +182,26 @@ angular.module('App.controllers', [])
             $location.path("/projectResults");
         };
 
-        $scope.loadProjectResults = function () {
+        $scope.projects = function () {
+            $location.path("/projects");
+        };
+
+
+        $scope.loadProjectResults = function () { 
+
+            var swiper_coverpage = new Swiper('.coverpage-classic', { 
+                pagination: '.coverpage-slider .swiper-pagination',
+                nextButton: '.flashing-arrows-1',
+                prevButton: '.flashing-arrows-2',
+                paginationClickable: true
+            });
+
+            var screen_height = $(window).height();
+
+            $('.coverpage-clear').css({
+                "height": screen_height
+            });
+
             $scope.title = $localStorage.selectedData.title;
             $scope.difficulty = $localStorage.selectedData.difficulty;
             $scope.youtube = $localStorage.selectedData.youtube;
@@ -191,6 +210,7 @@ angular.module('App.controllers', [])
             $scope.time = $localStorage.selectedData.time;
             $scope.cost = $localStorage.selectedData.cost;
             $scope.requirements = $localStorage.selectedData.requirements;
+            $scope.class = $localStorage.selectedData.class;
         };
     }])
         //Search Controller
