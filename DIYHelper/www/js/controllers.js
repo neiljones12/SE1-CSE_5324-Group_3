@@ -552,6 +552,7 @@ angular.module('App.controllers', [])
                 if ($localStorage.datas[i].isActive) {
                     $scope.isProjectStart = true;
                 }
+            }
         };
         $scope.onSelect = function (selection) {
             console.log(selection);
