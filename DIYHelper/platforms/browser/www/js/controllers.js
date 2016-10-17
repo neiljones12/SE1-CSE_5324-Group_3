@@ -78,53 +78,12 @@ angular.module('App.controllers', [])
     .controller('DashboardCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', function ($scope, $window, $location, $http, $localStorage, $sce) {
         $scope.loadDashbaord = function () {
 
-            //To enable slider on homescreen
-            var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
-                pagination: '.swiper-pagination',
-                paginationClickable: true,
-                slidesPerView: 3,
-                spaceBetween: 20,
-                breakpoints: {
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
-                    1024: {
-                        slidesPerView: 2,
-                        spaceBetween: 20
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 10
-                    },
-                    660: {
-                        slidesPerView: 1,
-                        spaceBetween: 5
-                    },
-                    320: {
-                        slidesPerView: 1,
-                        spaceBetween: 5
-                    }
-                }
-            });
-        };
-
-        $scope.projects = function () {
-            $location.path("/projects");
-        };
-        $scope.search = function () {
-            $location.path("/search");
-        };
-        $scope.tools = function () {
-            $location.path("/tools");
-        };
-    }])
-    //Projects controller
-    .controller('ProjectsCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', '$routeParams', function ($scope, $window, $location, $http, $localStorage, $sce, $routeParams) {
-        //initialization function called when the projects section is loaded
-        $scope.loadProjects = function () {
-            $scope.selectedData = null;
             $scope.isProjectStart = false;
+            //loading the data from a json file
+
+            //$http.get('js/data.json').success(function (data) {
+            //    $scope.datas = data;
+            //});
             $scope.datas = [{
                 "id": 1,
                 "title": "Pumpkin carving",
@@ -542,6 +501,54 @@ angular.module('App.controllers', [])
                     $scope.isProjectStart = true;
                 }
             }
+
+
+            //To enable slider on homescreen
+            var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                slidesPerView: 3,
+                spaceBetween: 20,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                    },
+                    660: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    },
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    }
+                }
+            });
+        };
+
+        $scope.projects = function () {
+            $location.path("/projects");
+        };
+        $scope.search = function () {
+            $location.path("/search");
+        };
+        $scope.tools = function () {
+            $location.path("/tools");
+        };
+    }])
+    //Projects controller
+    .controller('ProjectsCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', '$routeParams', function ($scope, $window, $location, $http, $localStorage, $sce, $routeParams) {
+        //initialization function called when the projects section is loaded
+        $scope.loadProjects = function () {
+            $scope.selectedData = null; 
         };
         $scope.onSelect = function (selection) {
             console.log(selection);

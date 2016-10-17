@@ -31,13 +31,47 @@
 
             <div class="content material-no-bottom material-half-top">
                 <div class="heading-text">
-                    <h4>Project history</h4>
-                    <div class="heading-line-1"></div>
-                    <i class="fa fa-star-o color-red-dark"></i>
-                    <div class="heading-line-2"></div>
-                    <p>
-                        No saved projects. Create a new project.
-                    </p>
+                    <div ng-controller="ProjectsCtrl">
+                        <h1 style="padding-top:15px">Projects Bookmarked<span></span></h1>
+                        <div ng-show="isProjectStart">
+                            <div ng-repeat="d in datas">
+                                <div ng-if="d.isActive">
+                                    <div class="content no-material" ng-click="openProject(d.id)">
+                                        <div ng-if="d.progress < 50">
+                                            <div class="notification-large bg-red-light">
+                                                <h1 class="text-left">{{d.title}}</h1>
+                                                <p class="text-left">
+                                                    Progress : {{d.progress}}
+                                                </p>
+                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                        <div ng-if="d.progress >= 50 && d.progress <= 79">
+                                            <div class="notification-large bg-orange-light">
+                                                <h1 class="text-left">{{d.title}}</h1>
+                                                <p class="text-left">
+                                                    Progress : {{d.progress}}
+                                                </p>
+                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                        <div ng-if="d.progress >= 80">
+                                            <div class="notification-large bg-green-light">
+                                                <h1 class="text-left">{{d.title}}</h1>
+                                                <p class="text-left">
+                                                    Progress : {{d.progress}}
+                                                </p>
+                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-hide="isProjectStart">
+                            <p>No projects bookmarked</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="center-socials full-bottom">
                     <a href="#" class="icon icon-round icon-s no-border facebook-bg"><i class="fa fa-facebook"></i></a>
