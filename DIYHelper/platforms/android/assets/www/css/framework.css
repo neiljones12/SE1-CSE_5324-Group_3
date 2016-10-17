@@ -310,6 +310,11 @@ textarea{font-family:'Roboto', sans-serif;}
 .bg-8{background-image:url(../img/pictures/8.jpg)}
 .bg-9{background-image:url(../img/pictures/9.jpg)}
 .bg-pumpkin{background-image:url(../img/pictures/pumpkin.jpg)}
+.bg-jar{background-image:url(../img/pictures/jar.jpg)}
+.bg-beer-caddie{background-image:url(../img/pictures/beer-caddie.jpg)}
+.bg-window-seat{background-image:url(../img/pictures/window-seat.jpg)}
+.bg-raised-garden-bed{background-image:url(../img/pictures/raised-garden-bed.jpg)}
+
 .overlay{
     position:absolute;
     top:0px;

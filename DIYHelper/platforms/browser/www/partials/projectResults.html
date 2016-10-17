@@ -16,7 +16,9 @@
                             <h1 class="text-left" style="font-size:36px; font-weight:600; padding-bottom:5px; padding-right:5px;color:#2980b9;">{{title}}</h1>
                             <h1 class="text-left" style="font-size:25px; font-weight:200; padding-bottom:35px; color:#FFFFFF;">({{time}})</h1>
                             <a class="button button-ghost"  ng-click="projects()">Back</a>
-                            <a class="button button-ghost show-share-bottom"><i class="fa fa-arrow-down" aria-hidden="true"></i> Instructions</a>
+                            <a class="button button-ghost" ng-click="homescreenToggleOn()" ng-hide="isActive">Add to homescreen</a>
+                            <a class="button button-ghost" ng-click="homescreenToggleOff()" ng-show="isActive">Remove from homescreen</a>
+                            <a class="button button-ghost show-share-bottom"><i class="fa fa-arrow-down" aria-hidden="true"></i> &nbsp; Instructions</a>
                         </div>
                         <div class="overlay dark-overlay"></div>
                     </div> 
@@ -44,9 +46,24 @@
                     <span>Time: </span>{{time}}<br />
                     <span>Cost: </span>{{cost}}
                     <hr />
-                    <h2>What will you need</h2>
-                    <div ng-repeat="r in requirements">
-                        <div>{{r.name}}</div><br />
+                    <div class="footer-links">
+                        <h4>What will you need</h4>
+                        <p class="half-bottom">Here are the basic requirements for the project</p>
+                        <div ng-repeat="r in requirements">
+                            <a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{r.name}}</a>
+                        </div>  
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="timeline-block-right"> 
+                    <hr />
+                    <div class="footer-links">
+                        <h4>Instructions</h4>
+                        <p class="half-bottom">Follow these steps carefully</p>
+                        <div ng-repeat="i in Instructions">
+                            <a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{i.step}}</a>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>

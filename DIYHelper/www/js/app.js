@@ -13,6 +13,9 @@ angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.servi
         }).when('/projects', {
             controller: 'ProjectsCtrl',
             templateUrl: 'partials/projects.html'
+        }).when('/projects/:id', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectResults.html'
         }).when('/projectResults', {
             controller: 'ProjectsCtrl',
             templateUrl: 'partials/projectResults.html'
