@@ -256,7 +256,7 @@ angular.module('App.controllers', [])
       "youtube": "q_VZ98dtc_w",
       "description": "We will walk you through how to make your own handmade beer caddie.",
       "isActive": true,
-      "progress": "80",
+      "progress": "90",
       "requirements": [
         {
             "name": "Power Drill"
