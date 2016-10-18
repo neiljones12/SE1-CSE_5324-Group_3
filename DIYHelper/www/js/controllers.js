@@ -543,6 +543,10 @@ angular.module('App.controllers', [])
     }])
     //Projects controller
     .controller('ProjectsCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', '$routeParams', function ($scope, $window, $location, $http, $localStorage, $sce, $routeParams) {
+        $scope.dashboard = function () {
+            $location.path("/dashboard");
+        };
+
         //initialization function called when the projects section is loaded
         $scope.loadProjects = function () {
             $scope.selectedData = null;

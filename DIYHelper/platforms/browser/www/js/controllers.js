@@ -543,9 +543,20 @@ angular.module('App.controllers', [])
     }])
     //Projects controller
     .controller('ProjectsCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', '$routeParams', function ($scope, $window, $location, $http, $localStorage, $sce, $routeParams) {
+        $scope.dashboard = function () {
+            $location.path("/dashboard");
+        };
+
         //initialization function called when the projects section is loaded
         $scope.loadProjects = function () {
-            $scope.selectedData = null; 
+            $scope.selectedData = null;
+            $scope.isProjectStart = false;
+            $scope.datas = $localStorage.datas;
+            for (var i = 0 ; i < $localStorage.datas.length ; i++) {
+                if ($localStorage.datas[i].isActive) {
+                    $scope.isProjectStart = true;
+                }
+            }
         };
         $scope.onSelect = function (selection) {
             console.log(selection);
