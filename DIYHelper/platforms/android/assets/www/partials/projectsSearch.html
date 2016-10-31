@@ -1,0 +1,44 @@
+﻿<div id="page-transitions" ng-init="loadProjects()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div>
+
+    <form ng-submit="submitSearch()" ng-controller="ProjectsCtrl">
+        <div id="page-content" class="page-content search">
+            <div id="page-content-scroll">
+                <div class="top_promo_block" id="promo_head" style="height: 444px;">
+                    <div class="start_descrition">
+                        <h1 style="padding-top:50px">Welcome<span></span></h1>
+                        <div class="search_promo">
+                            <div class="input-group">
+                                <autocomplete options="datas"
+                                              place-holder="What are you working on?"
+                                              on-select="onSelect"
+                                              display-property="title"
+                                              input-class="form-control"
+                                              clear-input="false"></autocomplete>
+                                <div class="input-group-btn btn_promo_search">
+                                    <button type="submit" class="btn btn-success" id="submit">Search</button>
+                                </div>
+                            </div>
+                            <div style="color:white">
+                                <br/>
+                                <h2 style="font-family:'Segoe UI'">Create a new project if you cannot find one</h2>
+                                <hr />
+                                <button class="btn btn-default" type="button" ng-click="projectsCreate()">Create a new project</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group-btn btn_promo_search">
+                                <div class="button" ng-click="dashboard()">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

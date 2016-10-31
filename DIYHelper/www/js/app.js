@@ -12,7 +12,16 @@ angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.servi
             templateUrl: 'partials/dashboard.html'
         }).when('/projects', {
             controller: 'ProjectsCtrl',
-            templateUrl: 'partials/projects.html'
+            templateUrl: 'partials/projectsDashboard.html'
+        }).when('/projectSearch', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectsSearch.html'
+        }).when('/projectsCreate', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectsCreate.html'
+        }).when('/projectsEdit/:id', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectsEdit.html'
         }).when('/projects/:id', {
             controller: 'ProjectsCtrl',
             templateUrl: 'partials/projectResults.html'

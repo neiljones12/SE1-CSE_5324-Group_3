@@ -1,0 +1,73 @@
+﻿<div id="page-transitions" ng-init="initCreateProject()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div> 
+    <form ng-submit="submitCreateProject()" ng-controller="ProjectsCtrl">
+        <div id="page-content" class="page-content search">
+            <div id="page-content-scroll">
+                <div class="top_promo_block" id="promo_head" style="height: 444px;">
+                    <div class="start_descrition">
+                        <div style="padding-top:50px"><h1 style="padding-top:20px">NEW DIY PROJECT<span></span></h1>
+                            <div class="col-md-12">
+                                <div class="well well-sm">
+                                    <div class="form-group">
+                                        <label for="Title">Title</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Enter a title" ng-model="project.title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Cost">Description</label>
+                                        <input type="text" class="form-control" id="description" placeholder="Enter the youtube link" ng-model="project.description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Difficulty"> Difficulty</label>
+                                        <select class="form-control" ng-model="project.difficulty">
+                                            <option value="">---Please select---</option>
+                                            <option value="Easy">Easy</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Difficult">Difficult</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Time">Time Required</label>
+                                        <input type="text" class="form-control" id="time" placeholder="Enter the time required" ng-model="project.time">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Cost">Cost estimate</label>
+                                        <input type="text" class="form-control" id="cost" placeholder="Enter the cost estimate" ng-model="project.cost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Cost">Youtube link</label>
+                                        <input type="text" class="form-control" id="youtube" placeholder="Enter the youtube link" ng-model="project.youtube">
+                                    </div>
+                                    <hr />
+                                    <h2>Requirements <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRequirement()"></i></h2>  
+                                    <div class="form-group"> 
+                                        <div ng-repeat="r in project.requirements">
+                                            <div ng-show="r.add">
+                                                <input type="text" class="form-control" placeholder="Enter the requirement" ng-model="r.name">
+                                                <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRequirement(r)"></i> 
+                                                <br />
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <h2>Instructions <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addInstructions()"></i></h2>
+                                    <div class="form-group">
+                                        <div ng-repeat="r in project.Instructions">
+                                            <div ng-show="r.add">
+                                                <input type="text" class="form-control" placeholder="Enter the instruction" ng-model="r.step">
+                                                <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteInstructions(r)"></i>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-default" ng-click="">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

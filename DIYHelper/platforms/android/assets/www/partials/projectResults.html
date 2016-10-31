@@ -15,16 +15,17 @@
                             <h1 class="text-left" style="font-size:30px; font-weight:800; padding-bottom:10px; color:#FFFFFF;">ON</h1>
                             <h1 class="text-left" style="font-size:36px; font-weight:600; padding-bottom:5px; padding-right:5px;color:#2980b9;">{{title}}</h1>
                             <h1 class="text-left" style="font-size:25px; font-weight:200; padding-bottom:35px; color:#FFFFFF;">({{time}})</h1>
-                            <a class="button button-ghost"  ng-click="projects()">Back</a>
+                            <a class="button button-ghost" ng-click="projects()">Back</a>
                             <a class="button button-ghost" ng-click="homescreenToggleOn()" ng-hide="isActive">Add to homescreen</a>
                             <a class="button button-ghost" ng-click="homescreenToggleOff()" ng-show="isActive">Remove from homescreen</a>
-                            <a class="button button-ghost show-share-bottom"><i class="fa fa-arrow-down" aria-hidden="true"></i> &nbsp; Instructions</a>
+                            <a class="button button-ghost" ng-click="edit()">Edit</a>
+                            <a class="button button-ghost" ng-click="delete()">Delete</a>
                         </div>
                         <div class="overlay dark-overlay"></div>
-                    </div> 
+                    </div>
                 </div>
             </div>
-            <div class="coverpage-clear"></div> 
+            <div class="coverpage-clear"></div>
             <div class="page-timeline-1 content">
                 <h1 class="timeline-heading"></h1><br />
                 <small>{{description}}</small> <hr />
@@ -36,7 +37,9 @@
                     <div class="responsive-video full-bottom">
                         <!--<iframe src="{{youtube}}"></iframe>-->
                         <youtube-video video-id="youtube"></youtube-video>
+                         </div>
                     </div>
+                     
                 </div>
                 <div class="timeline-block-left">
                     <i class="fa fa-square-o"></i>
@@ -50,23 +53,30 @@
                         <h4>What will you need</h4>
                         <p class="half-bottom">Here are the basic requirements for the project</p>
                         <div ng-repeat="r in requirements">
-                            <a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{r.name}}</a>
-                        </div>  
+                            <div ng-if="r.add">
+                                <!--<a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{r.name}}</a>-->
+                                <input type="checkbox" ng-model="r.checked" ng-change="checkboxReq(r)">{{r.name}}
+                            </div>
+                        </div>
                         <div class="clear"></div>
                     </div>
                 </div>
-                <div class="timeline-block-right"> 
+                <div class="timeline-block-right">
                     <hr />
                     <div class="footer-links">
                         <h4>Instructions</h4>
                         <p class="half-bottom">Follow these steps carefully</p>
                         <div ng-repeat="i in Instructions">
-                            <a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{i.step}}</a>
+                            <div ng-if="i.add">
+                                <!--<a href="#" style="width:100%"><i class="fa fa-circle-o"></i> {{i.step}}</a>-->
+                                <input type="checkbox" ng-model="i.checked" ng-change="checkboxIns(i)"> {{i.step}}
+
+                            </div>
                         </div>
                         <div class="clear"></div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </div>

@@ -1,33 +1,48 @@
-<div id="page-transitions" ng-init="loadDashbaord()">
-    <div class="page-preloader page-preloader-dark">
-        <img class="page-preload" src="../img/preload.gif">
-    </div>
+﻿<div class="page-preloader page-preloader-dark" ng-init="loadProjects()">
+    <img class="page-preload" src="../img/preload.gif">
+</div>
 
-    <div id="page-content" class="">
-        <div id="page-content-scroll">
-            <!--Enables this element to be scrolled -->
+<div id="page-content" class="page-content search" ng-controller="ProjectsCtrl">
+    <div id="page-content-scroll">
 
-            <div class="home-round-slider full-bottom">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="dashboard-img-2a" ng-click="projects()"></div>
-                        <h3>Projects</h3>
-                        <em>Get help with your DIY projects</em>
+        <div class="landing-homepage">
+            <div class="landing-page landing-dark">
+                <div class="landing-wrapper">
+                    <div class="landing-header no-bottom">
+                        <a class="landing-header-logo" href="#">PROJECTS</a>
+                        <div class="landing-header-icons">
+
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="dashboard-img-2b" ng-click="search()"></div>
-                        <h3>Search</h3>
-                        <em>A worldwide search for products required for your DIY project</em>
-                    </div> 
-                </div>
-            </div>
 
-            <div class="decoration decoration-margins"></div>
-
-            <div class="content material-no-bottom material-half-top">
-                <div class="heading-text">
-                    <div ng-controller="ProjectsCtrl">
-                        <h1 style="padding-top:15px">Projects Bookmarked<span></span></h1>
+                    <div class="content no-material no-bottom"><div class="deco"></div></div>
+                    <!-- Left Top Menu -->
+                    <ul>
+                        <li>
+                            <a ng-click="projectsSearch()">
+                                <i class="fa fa-home bg-red-dark"></i>
+                                <em>Search</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="projectsCreate()">
+                                <i class="fa fa-cog bg-green-dark"></i>
+                                <em>Create a new Project</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="">
+                                <i class="fa fa-compass bg-blue-dark"></i>
+                                <em>(Coming Soon)</em>
+                            </a>
+                        </li> 
+                    </ul>
+                    <div class="clear"></div>
+                    <div class="content no-material no-bottom"><div class="deco"></div></div>
+                    <div class="landing-header no-bottom">
+                        <h1 style="color:white">PROJECTS STARTED</h1>  
+                        <div class="content no-material no-bottom"><div class="deco"></div></div>
                         <div ng-show="isProjectStart">
                             <div ng-repeat="d in datas">
                                 <div ng-if="d.isActive">
@@ -65,19 +80,22 @@
                         </div>
                         <div ng-hide="isProjectStart">
                             <p>No projects bookmarked</p>
-                        </div>
+                        </div> 
                     </div>
+
+                    <div class="content no-material no-bottom"><div class="deco"></div></div>
+
+                    <div class="input-group-btn btn_promo_search">
+                        <div class="button" ng-click="dashboard()">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                        </div>
+                    </div> 
                 </div>
-                <div class="center-socials full-bottom">
-                    <a href="#" class="icon icon-round icon-s no-border facebook-bg"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="icon icon-round icon-s no-border google-bg"><i class="fa fa-google-plus"></i></a>
-                    <a href="#" class="icon icon-round icon-s no-border twitter-bg"><i class="fa fa-twitter"></i></a>
-                </div>
+                <div class="landing-overlay"></div>
+                <div class="background"></div>
             </div>
-
-            <div class="decoration decoration-margins"></div>
-
-            <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
         </div>
+
+
     </div>
 </div>
