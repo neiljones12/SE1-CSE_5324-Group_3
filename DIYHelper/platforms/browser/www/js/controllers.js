@@ -674,7 +674,7 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                if ($localStorage.selectedData.Instructions[i].add) {
                     insCountTotal++;
                 } 
             } 
@@ -822,7 +822,7 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                if ($localStorage.selectedData.Instructions[i].add) {
                     insCountTotal++;
                 }
             }
@@ -849,7 +849,7 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                if ($localStorage.selectedData.Instructions[i].add) {
                     insCountTotal++;
                 }
             }
