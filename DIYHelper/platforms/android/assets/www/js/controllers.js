@@ -666,13 +666,17 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
                     reqCount++;
                 }
-                resCountTotal++;
+                if ($localStorage.selectedData.requirements[i].add) {
+                    resCountTotal++;
+                }
             }
             for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                insCountTotal++;
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCountTotal++;
+                } 
             } 
 
             $scope.val1 = (reqCount / resCountTotal);
@@ -810,13 +814,17 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
                     reqCount++;
                 }
-                resCountTotal++;
+                if ($localStorage.selectedData.requirements[i].add) {
+                    resCountTotal++;
+                }
             }
             for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                insCountTotal++;
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCountTotal++;
+                }
             }
             $scope.val1 = (reqCount / resCountTotal);
             $scope.val2 = (insCount / insCountTotal);
@@ -833,13 +841,17 @@ angular.module('App.controllers', [])
                 if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
                     reqCount++;
                 }
-                resCountTotal++;
+                if ($localStorage.selectedData.requirements[i].add) {
+                    resCountTotal++;
+                }
             }
             for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
                 if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
                     insCount++;
                 }
-                insCountTotal++;
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCountTotal++;
+                }
             }
             $scope.val1 = (reqCount / resCountTotal);
             $scope.val2 = (insCount / insCountTotal);
