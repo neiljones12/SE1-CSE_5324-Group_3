@@ -1,5 +1,5 @@
 angular.module('App.controllers', [])
-    .controller('LoginCtrl', ['$scope', 'ngFB', function ($scope, ngFB) {
+    .controller('LoginCtrl', ['$scope', function ($scope) {
 
     }])
     //Dashboard controller
@@ -623,6 +623,7 @@ angular.module('App.controllers', [])
         //initialization function called when a search result needs to be loaded
         $scope.loadProjectResults = function () {
             var currentId = $routeParams.id;
+            $scope.progress = 0;
             if (currentId != undefined && currentId > 0) {
                 for (var i = 0 ; i < $localStorage.datas.length ; i++) {
                     if ($localStorage.datas[i].id == currentId) {
@@ -656,7 +657,35 @@ angular.module('App.controllers', [])
             $scope.requirements = $localStorage.selectedData.requirements;
             $scope.class = $localStorage.selectedData.class;
             $scope.Instructions = $localStorage.selectedData.Instructions;
+
+            var reqCount = 0;
+            var resCountTotal = 0;
+            var insCount = 0;
+            var insCountTotal = 0;
+            for (var i = 0; i < $localStorage.selectedData.requirements.length; i++) {
+                if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
+                    reqCount++;
+                }
+                resCountTotal++;
+            }
+            for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCount++;
+                }
+                insCountTotal++;
+            } 
+
+            $scope.val1 = (reqCount / resCountTotal);
+            $scope.val2 = (insCount / insCountTotal);
+            $scope.progress = Math.round((($scope.val1 * 0.3) + ($scope.val2 * 0.7)) * 100);
+             
+            document.getElementById("progress").style.width = $scope.progress+"%";
+
         };
+
+        //$scope.$watch('[val1,val2]', function (newValue, oldValue) {
+        //    $scope.val3 = parseInt($scope.val1) + parseInt($scope.val2);
+        //});
 
         $scope.homescreenToggleOn = function () {
             var cId = $routeParams.id;
@@ -773,31 +802,50 @@ angular.module('App.controllers', [])
         };
 
         $scope.checkboxReq = function (obj) {
-            //for (var i = 0; i < $scope.requirements.length; i++)
-            //{
-            //    if ($scope.requirements[i].name == obj.name)
-            //    {
-            //        console.log($scope.requirements[i].checked);
-            //        if ($scope.requirements[i].checked)
-            //            $scope.requirements[i].checked = false;
-            //        else
-            //            $scope.requirements[i].checked = true; 
-                    
-            //        console.log($scope.requirements[i]);
-            //    } 
-            //} 
+            var reqCount = 0;
+            var resCountTotal = 0;
+            var insCount = 0;
+            var insCountTotal = 0;
+            for (var i = 0; i < $localStorage.selectedData.requirements.length; i++) {
+                if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
+                    reqCount++;
+                }
+                resCountTotal++;
+            }
+            for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCount++;
+                }
+                insCountTotal++;
+            }
+            $scope.val1 = (reqCount / resCountTotal);
+            $scope.val2 = (insCount / insCountTotal);
+            $scope.progress = Math.round((($scope.val1 * 0.3) + ($scope.val2 * 0.7)) * 100);
+            $localStorage.selectedData.progress = $scope.progress;
+            document.getElementById("progress").style.width = $scope.progress + "%";
         };
         $scope.checkboxIns = function (obj) {
-            //for (var i = 0; i < $scope.Instructions.length; i++) {
-            //    if ($scope.Instructions[i].step == obj.step) {
-            //        if ($scope.Instructions[i].checked)
-            //            $scope.Instructions[i].checked = false;
-            //        else
-            //            $scope.Instructions[i].checked = true;
-
-            //        console.log($scope.Instructions[i]);
-            //    }
-            //}
+            var reqCount = 0;
+            var resCountTotal = 0;
+            var insCount = 0;
+            var insCountTotal = 0;
+            for (var i = 0; i < $localStorage.selectedData.requirements.length; i++) {
+                if ($localStorage.selectedData.requirements[i].checked && $localStorage.selectedData.requirements[i].add) {
+                    reqCount++;
+                }
+                resCountTotal++;
+            }
+            for (var i = 0; i < $localStorage.selectedData.Instructions.length; i++) {
+                if ($localStorage.selectedData.Instructions[i].checked && $localStorage.selectedData.Instructions[i].add) {
+                    insCount++;
+                }
+                insCountTotal++;
+            }
+            $scope.val1 = (reqCount / resCountTotal);
+            $scope.val2 = (insCount / insCountTotal);
+            $scope.progress = Math.round((($scope.val1 * 0.3) + ($scope.val2 * 0.7)) * 100);
+            $localStorage.selectedData.progress = $scope.progress;
+            document.getElementById("progress").style.width = $scope.progress + "%";
         };
         $scope.submitUpdateProject = function () {
             var cId2 = $routeParams.id;

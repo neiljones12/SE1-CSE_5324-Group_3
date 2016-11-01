@@ -16,10 +16,9 @@
                             <h1 class="text-left" style="font-size:36px; font-weight:600; padding-bottom:5px; padding-right:5px;color:#2980b9;">{{title}}</h1>
                             <h1 class="text-left" style="font-size:25px; font-weight:200; padding-bottom:35px; color:#FFFFFF;">({{time}})</h1>
                             <a class="button button-ghost" ng-click="projects()">Back</a>
-                            <a class="button button-ghost" ng-click="homescreenToggleOn()" ng-hide="isActive">Add to homescreen</a>
-                            <a class="button button-ghost" ng-click="homescreenToggleOff()" ng-show="isActive">Remove from homescreen</a>
+                            <a class="button button-ghost" ng-click="homescreenToggleOn()" ng-hide="isActive">Start Project</a>
+                            <a class="button button-ghost" ng-click="homescreenToggleOff()" ng-show="isActive">Delete</a>
                             <a class="button button-ghost" ng-click="edit()">Edit</a>
-                            <a class="button button-ghost" ng-click="delete()">Delete</a>
                         </div>
                         <div class="overlay dark-overlay"></div>
                     </div>
@@ -37,9 +36,7 @@
                     <div class="responsive-video full-bottom">
                         <!--<iframe src="{{youtube}}"></iframe>-->
                         <youtube-video video-id="youtube"></youtube-video>
-                         </div>
                     </div>
-                     
                 </div>
                 <div class="timeline-block-left">
                     <i class="fa fa-square-o"></i>
@@ -76,7 +73,21 @@
                         <div class="clear"></div>
                     </div>
                 </div>
+                <div class="timeline-block-left">
+                    <i class="fa fa-square-o"></i>
+                </div>
+                <div class="timeline-block-right">
+                    <hr />
+                    <div class="footer-links">
+                        <h4>Progress - {{progress}}%</h4> 
+                        <div class="progress">
+                            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                <span class="sr-only">70% Complete</span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
