@@ -4,22 +4,24 @@
         <img class="page-preload" src="img/preload.gif">
     </div>
 
-    <div id="page-content" class="page-content">
-        <div id="page-content-scroll">
-
+    <div id="page-content" class="page-content" ng-init="loginInit()">
+        <div id="page-content-scroll"> 
             <div class="page-fullscreen bg-2">
                 <div class="page-fullscreen-content">
                     <div class="pageapp-login">
+                        <div ng-show="error">
+                            <div class="alert alert-danger" role="alert">{{message}}</div>
+                        </div>
                         <a href="#" class="pageapp-login-logo">
                             <img src="img/preload-logo.png">
-                        </a>
-                        <div class="pageapp-login-input">
+                        </a> 
+                        <div class="pageapp-login-input"> 
                             <i class="login-icon fa fa-user"></i>
-                            <input type="text" value="Username" onfocus="if (this.value=='Username') this.value = ''" onblur="if (this.value=='') this.value = 'Username'">
+                            <input ng-model="username" type="text" value="Username" onfocus="if (this.value=='Username') this.value = ''" onblur="if (this.value=='') this.value = 'Username'">
                         </div>
                         <div class="pageapp-login-input">
                             <i class="login-icon fa fa-lock"></i>
-                            <input type="password" value="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'">
+                            <input ng-model="password" type="password" value="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'">
                         </div>
                         <!--<div class="pageapp-login-links">
                             <a href="#" class="page-login-forgot"><i class="fa fa-eye"></i>Forgot Credentials</a>
@@ -27,8 +29,8 @@
                             <div class="clear"></div>
                         </div>-->
 
-                        <a href="#/dashboard" class="button button-green button-icon button-full half-top full-bottom"><i class="fa fa-angle-right"></i>Login</a>
-
+                        <a ng-click="login()" class="button button-green button-icon button-full half-top full-bottom"><i class="fa fa-angle-right"></i>Login</a>
+                        <a ng-click="register()" class="button button-blue button-icon button-full half-top full-bottom"><i class="fa fa-angle-right"></i>Register</a>
                         <!--<div class="decoration"></div>
                         <div class="pageapp-login-social">
                             <a href="#" ng-click="facebookLogin()" class="button button-icon button-full facebook-bg"><i class="fa fa-facebook"></i>Login with Facebook</a>

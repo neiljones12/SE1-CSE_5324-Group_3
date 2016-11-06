@@ -5,8 +5,12 @@
 
     <div id="page-content" class="">
         <div id="page-content-scroll">
-            <!--Enables this element to be scrolled -->
-
+            <div class="content">
+                <button class="button button-red pull-right" ng-click="LogOut()">Logout</button>
+                <h1>{{username}}'s Dashboard</h1>
+            </div>
+            <div class="decoration decoration-margins"></div>
+            <!--Enables this element to be scrolled --> 
             <div class="home-round-slider full-bottom">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -27,7 +31,7 @@
             <div class="content material-no-bottom material-half-top">
                 <div class="heading-text">
                     <div ng-controller="ProjectsCtrl">
-                        <h1 style="padding-top:15px">Projects Bookmarked<span></span></h1>
+                        <h1 style="padding-top:15px">Projects Bookmarked<span></span></h1> 
                         <div ng-show="isProjectStart">
                             <div ng-repeat="d in datas">
                                 <div ng-if="d.isActive">

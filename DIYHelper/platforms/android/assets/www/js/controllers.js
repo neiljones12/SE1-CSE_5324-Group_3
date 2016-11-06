@@ -1,11 +1,86 @@
 angular.module('App.controllers', [])
-    .controller('LoginCtrl', ['$scope', function ($scope) {
+    .controller('LoginCtrl', ['$scope', '$localStorage', '$location', function ($scope, $localStorage, $location) {
+        //Initializing users 
 
+        $scope.loginInit = function () {
+            if ($localStorage.loggedInUser != undefined)
+            {
+                $location.path("/dashboard");
+            }
+            $scope.users = [
+            {
+                "id": 1,
+                "username": "Admin",
+                "password": "Admin"
+            }
+            ];
+            if ($localStorage.users == undefined) {
+                $localStorage.users = $scope.users;
+                $localStorage.lastUserId = 1;
+            }
+            else {
+                $scope.users = $localStorage.users;
+            }
+
+            $scope.username = "Admin";
+            $scope.password = "Admin";
+
+            $scope.login = function () {
+                for (var i = 0; i < $localStorage.users.length;i++)
+                {
+                    if ($localStorage.users[i].username == $scope.username)
+                    {
+                        if ($localStorage.users[i].password == $scope.password) {
+                            $localStorage.loggedInUser = $localStorage.users[i];
+                            $location.path("/dashboard");
+                        }
+                        else
+                        {
+                            //Wrong Password
+                            $scope.error = true;
+                            $scope.message = "Incorrect password";
+                        }
+                    }
+                    else
+                    {
+                        //user does not exist 
+                        $scope.error = true;
+                        $scope.message = "User does not exist.";
+                    }
+                }
+            };
+
+            $scope.register = function () {
+                for (var i = 0; i < $localStorage.users.length; i++) {
+                    if ($localStorage.users[i].username == $scope.username) {
+                        //user exists
+                        $scope.error = true;
+                        $scope.message = "User Exists. Try to log in";
+                    }
+                    else {
+                        //user does not exist 
+                        $localStorage.lastUserId = $localStorage.lastUserId + 1;
+                        var user = {
+                            "id": $localStorage.lastUserId,
+                            "username": $scope.username,
+                            "password": $scope.password
+                        };
+                        $localStorage.users.push(user);
+                        $localStorage.loggedInUser = user;
+                        $location.path("/dashboard");
+                    }
+                }
+            }; 
+        };
     }])
     //Dashboard controller
     .controller('DashboardCtrl', ['$scope', '$window', '$location', '$http', '$localStorage', '$sce', function ($scope, $window, $location, $http, $localStorage, $sce) {
+        $scope.LogOut = function () {
+            $localStorage.loggedInUser = null;
+            $location.path("/login");
+        };
         $scope.loadDashbaord = function () {
-
+            $scope.username = $localStorage.loggedInUser.username;
             $scope.isProjectStart = false;
             //loading the data from a json file
 
