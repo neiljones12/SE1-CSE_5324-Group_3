@@ -1,7 +1,7 @@
 angular.module('App.controllers', [])
     .controller('LoginCtrl', ['$scope', '$localStorage', '$location', function ($scope, $localStorage, $location) {
         //Initializing users 
-
+        //initialized when the app is launched
         $scope.loginInit = function () {
             if ($localStorage.loggedInUser != undefined) {
                 $location.path("/dashboard");
@@ -33,6 +33,8 @@ angular.module('App.controllers', [])
                 "password": "Mani"
             }
             ];
+
+            //initializing localstorage
             if ($localStorage.users == undefined) {
                 $localStorage.users = $scope.users;
                 $localStorage.lastUserId = 1;
@@ -41,6 +43,7 @@ angular.module('App.controllers', [])
                 $scope.users = $localStorage.users;
             }
 
+            //initial load
             $scope.username = "Admin";
             $scope.password = "Admin";
 
@@ -119,12 +122,6 @@ angular.module('App.controllers', [])
                 "isActive": false,
                 "progress": "20",
                 "members": [
-                    {
-                        memberId: 2
-                    },
-                    {
-                        memberId: 3
-                    }
                 ],
                 "requirements": [
                   {
@@ -200,12 +197,6 @@ angular.module('App.controllers', [])
                 "isActive": false,
                 "progress": "75",
                 "members": [
-                    {
-                        memberId: 4
-                    },
-                    {
-                        memberId: 3
-                    }
                 ],
                 "requirements": [
                   {
@@ -367,12 +358,6 @@ angular.module('App.controllers', [])
                 "isActive": false,
                 "progress": "50",
                 "members": [
-                    {
-                        memberId: 5
-                    },
-                    {
-                        memberId: 2
-                    }
                 ],
                 "requirements": [
                   {
@@ -548,9 +533,6 @@ angular.module('App.controllers', [])
                 "isActive": true,
                 "progress": "10",
                 "members": [
-                    {
-                        memberId: 3
-                    }
                 ],
                 "requirements": [
                   {
@@ -898,8 +880,9 @@ angular.module('App.controllers', [])
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
                 if ($localStorage.datas[i].id == cId) {
                     $scope.isActive = true;
+                    $localStorage.datas[i].
                     $localStorage.datas[i].isActive = true;
-                    $localStorage.datas[i]
+                    $localStorage.datas[i].createdById = $localStorage.loggedInUser.id;
                 }
             }
         };
@@ -950,6 +933,7 @@ angular.module('App.controllers', [])
                 }
             }
 
+            //initializing the project object
             $scope.project = {
                 id: $localStorage.selectedData.id,
                 createdById: $localStorage.loggedInUser.id,
@@ -1114,6 +1098,7 @@ angular.module('App.controllers', [])
             }
         };
 
+        //function to remove the member 
         $scope.removeMember = function (id) {
             var currentId = $routeParams.id;
             if (currentId != undefined && currentId > 0) {
@@ -1138,6 +1123,7 @@ angular.module('App.controllers', [])
             }
         };
 
+        //function to add a member
         $scope.addMember = function () { 
             var currentId = $routeParams.id;
             if (currentId != undefined && currentId > 0) {
