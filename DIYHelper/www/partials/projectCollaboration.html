@@ -1,0 +1,72 @@
+﻿<div id="page-transitions" ng-init="initCollaboration()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div>
+
+    <div id="page-content" class="page-content">
+        <div id="page-content-scroll">
+            <div class="content material-no-bottom material-half-top">
+                <div class="heading-text">
+                    <h4>Members</h4>
+                    <div class="heading-line-1"></div>
+                    <i class="fa fa-star-o color-red-dark"></i>
+                    <div class="heading-line-2"></div>
+                    <p>Project Admin: {{adminUsername}}</p>
+                     
+                    <div ng-show="memberData">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="m in memberData">
+                                    <td>{{m.username}}</td>
+                                    <td>
+                                        <div ng-show="isAddMembers">
+                                            <i class="fa fa-remove" aria-hidden="true" ng-click="removeMember(m.id)"></i>
+                                        </div>
+                                        <div ng-hide="isAddMembers">
+                                             
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-hide="memberData">
+                        <h4>No members associated with this projects</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="content material-no-bottom material-half-top">
+                <div class="heading-text">
+                    &nbsp;
+                    <div class="heading-line-1"></div>
+                    <i class="fa fa-star-o color-red-dark"></i>
+                    <div class="heading-line-2"></div>
+                    <div ng-show="isAddMembers">
+                        <div class="">
+                            <select class="form-control" ng-model="memberDetails">
+                                <option value="">
+                                    Select a user
+                                </option>
+                                <option ng-repeat="u in nonMemberData"
+                                        value="{{u.id}}">
+                                    {{u.username}}
+                                </option>
+                            </select>
+                            <div class="form-group">
+                                <button class="btn btn-info" ng-click="addMember()">Add Member</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-hide="isAddMembers">
+                        <h4><small>Only the project admin can remove members</small></h4>
+                    </div> 
+                    <button class="btn btn-warning" ng-click="backToProject()">Back to project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

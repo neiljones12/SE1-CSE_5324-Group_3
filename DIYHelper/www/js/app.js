@@ -10,6 +10,9 @@ angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.servi
         }).when('/dashboard', {
             controller: 'DashboardCtrl',
             templateUrl: 'partials/dashboard.html'
+        }).when('/manageCollaboration/:id', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/projectCollaboration.html'
         }).when('/projects', {
             controller: 'ProjectsCtrl',
             templateUrl: 'partials/projectsDashboard.html'
@@ -28,6 +31,9 @@ angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.servi
         }).when('/projectResults', {
             controller: 'ProjectsCtrl',
             templateUrl: 'partials/projectResults.html'
+        }).when('/collaborate', {
+            controller: 'ProjectsCtrl',
+            templateUrl: 'partials/collaborateDashboard.html'
         }).when('/search', {
             controller: 'SearchCtrl',
             templateUrl: 'partials/search.html'

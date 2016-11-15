@@ -3,8 +3,7 @@ angular.module('App.controllers', [])
         //Initializing users 
 
         $scope.loginInit = function () {
-            if ($localStorage.loggedInUser != undefined)
-            {
+            if ($localStorage.loggedInUser != undefined) {
                 $location.path("/dashboard");
             }
             $scope.users = [
@@ -12,6 +11,26 @@ angular.module('App.controllers', [])
                 "id": 1,
                 "username": "Admin",
                 "password": "Admin"
+            },
+            {
+                "id": 2,
+                "username": "Neil",
+                "password": "Neil"
+            },
+            {
+                "id": 3,
+                "username": "Ali",
+                "password": "Ali"
+            },
+            {
+                "id": 4,
+                "username": "Namratha",
+                "password": "Namratha"
+            },
+            {
+                "id": 5,
+                "username": "Mani",
+                "password": "Mani"
             }
             ];
             if ($localStorage.users == undefined) {
@@ -26,23 +45,19 @@ angular.module('App.controllers', [])
             $scope.password = "Admin";
 
             $scope.login = function () {
-                for (var i = 0; i < $localStorage.users.length;i++)
-                {
-                    if ($localStorage.users[i].username == $scope.username)
-                    {
+                for (var i = 0; i < $localStorage.users.length; i++) {
+                    if ($localStorage.users[i].username == $scope.username) {
                         if ($localStorage.users[i].password == $scope.password) {
                             $localStorage.loggedInUser = $localStorage.users[i];
                             $location.path("/dashboard");
                         }
-                        else
-                        {
+                        else {
                             //Wrong Password
                             $scope.error = true;
                             $scope.message = "Incorrect password";
                         }
                     }
-                    else
-                    {
+                    else {
                         //user does not exist 
                         $scope.error = true;
                         $scope.message = "User does not exist.";
@@ -70,7 +85,7 @@ angular.module('App.controllers', [])
                         $location.path("/dashboard");
                     }
                 }
-            }; 
+            };
         };
     }])
     //Dashboard controller
@@ -88,8 +103,11 @@ angular.module('App.controllers', [])
             //    $scope.datas = data;
             //}); 
 
+            // Data that will be used if there no data in the database 
             $scope.datas = [{
                 "id": 1,
+                "createdById": 1,
+                "username": "Admin",
                 "title": "Pumpkin carving",
                 "class": "pumpkin",
                 "isDelete": false,
@@ -98,8 +116,16 @@ angular.module('App.controllers', [])
                 "cost": "10-30$",
                 "youtube": "kzc4JxgE43k",
                 "description": "Artist Ray Villafane shares techniques and tricks for carving lifelike faces into Halloween pumpkins.",
-                "isActive": true,
+                "isActive": false,
                 "progress": "20",
+                "members": [
+                    {
+                        memberId: 2
+                    },
+                    {
+                        memberId: 3
+                    }
+                ],
                 "requirements": [
                   {
                       "name": "cordless Drill",
@@ -162,6 +188,7 @@ angular.module('App.controllers', [])
                 ]
             }, {
                 "id": 2,
+                "createdById": 2,
                 "title": "Mounted Mason Jar Planters",
                 "class": "jar",
                 "isDelete": false,
@@ -172,6 +199,14 @@ angular.module('App.controllers', [])
                 "description": "Mason jars are a good way to reuse scrap wood and add greenery to your home.",
                 "isActive": false,
                 "progress": "75",
+                "members": [
+                    {
+                        memberId: 4
+                    },
+                    {
+                        memberId: 3
+                    }
+                ],
                 "requirements": [
                   {
                       "name": "cordless Drill",
@@ -238,6 +273,7 @@ angular.module('App.controllers', [])
                 ]
             }, {
                 "id": 3,
+                "createdById": 3,
                 "title": "Beer caddie",
                 "class": "beer-caddie",
                 "isDelete": false,
@@ -246,8 +282,9 @@ angular.module('App.controllers', [])
                 "cost": "25$",
                 "youtube": "q_VZ98dtc_w",
                 "description": "We will walk you through how to make your own handmade beer caddie.",
-                "isActive": true,
+                "isActive": false,
                 "progress": "90",
+                "members": [],
                 "requirements": [
                   {
                       "name": "Power Drill",
@@ -318,6 +355,7 @@ angular.module('App.controllers', [])
                 ]
             }, {
                 "id": 4,
+                "createdById": 1,
                 "title": "Window Seat",
                 "class": "window-seat",
                 "isDelete": false,
@@ -326,8 +364,16 @@ angular.module('App.controllers', [])
                 "cost": "30-100$",
                 "youtube": "G9ZCI_x3EfM",
                 "description": "Window seats are a perfect companion for bay windows, making it a cozy nook for reading",
-                "isActive": true,
+                "isActive": false,
                 "progress": "50",
+                "members": [
+                    {
+                        memberId: 5
+                    },
+                    {
+                        memberId: 2
+                    }
+                ],
                 "requirements": [
                   {
                       "name": "Measuring tape",
@@ -490,6 +536,7 @@ angular.module('App.controllers', [])
                 ]
             }, {
                 "id": 5,
+                "createdById": 1,
                 "title": "Raised garden bed",
                 "class": "raised-garden-bed",
                 "isDelete": false,
@@ -500,6 +547,11 @@ angular.module('App.controllers', [])
                 "description": "Raised beds are a great way to control your soil content, stave off weeds and prevent soil compaction from foot traffic.",
                 "isActive": true,
                 "progress": "10",
+                "members": [
+                    {
+                        memberId: 3
+                    }
+                ],
                 "requirements": [
                   {
                       "name": "Power Drill",
@@ -673,24 +725,93 @@ angular.module('App.controllers', [])
             $scope.$broadcast('simple-autocomplete:clearInput');
         };
 
+        //Redirect to edit the project
         $scope.edit = function () {
             var currentId = $routeParams.id;
             $location.path("/projectsEdit/" + currentId);
         };
 
+        //manage collaboration
+        $scope.manageCollaboration = function () {
+            var currentId = $routeParams.id;
+            $location.path("/manageCollaboration/" + currentId);
+        };
+
+        $scope.backToProject = function () {
+            var currentId = $routeParams.id;
+            $location.path("/projects/" + currentId);
+        };
+
+        //collaboration initialization
+        $scope.initCollaboration = function () { 
+            $scope.memberDetails = "";
+            var currentId = $routeParams.id;
+            if (currentId != undefined && currentId > 0) {
+                $scope.nonMemberData = [];
+                for (var i = 0 ; i < $localStorage.datas.length ; i++) { 
+                    if ($localStorage.datas[i].id == currentId) {
+                        $localStorage.selectedData = $localStorage.datas[i];
+                        $scope.memberData = [];
+                        $scope.nonMemberData = angular.copy($localStorage.users);
+                        console.log($localStorage.datas[i].members);
+                        var temp = $localStorage.datas[i].members;
+                        console.log("USERS");
+                        console.log($localStorage.users);
+                        for (var k = 0; k < $localStorage.users.length; k++) { 
+                            if (temp.length > 0) {
+                                for (var j = 0; j < temp.length; j++) { 
+                                    if ($localStorage.users[k].id == temp[j].memberId) {
+                                        $scope.memberData.push($localStorage.users[k]);
+                                    } 
+                                }
+                            }
+                            else
+                            {
+                                $scope.memberData.push($localStorage.users[k]);
+                            }
+                        } 
+                    }
+                }
+
+                //console.log($scope.memberData);
+                for (var i = $scope.nonMemberData.length - 1; i >= 0; i--) {
+                    for (var j = 0; j < $scope.memberData.length; j++) {
+                        if ($scope.nonMemberData[i] && ($scope.nonMemberData[i].id === $scope.memberData[j].id)) {
+                            $scope.nonMemberData.splice(i, 1);
+                        }
+                    }
+                }
+                 
+            }
+            
+            $scope.adminUsername = "";
+            for (var i = 0; i < $localStorage.users.length; i++) {
+                if ($localStorage.users[i].id == $localStorage.selectedData.createdById) {
+                    if ($localStorage.loggedInUser.id == $localStorage.selectedData.createdById) {
+                        $scope.isAddMembers = true;
+                    }
+                    $scope.adminUsername = $localStorage.users[i].username;
+                } 
+            } 
+        };
+
+        //Redirect to projects
         $scope.projects = function () {
             $location.path("/projects");
         };
 
+        //Search submit
         $scope.submitSearch = function () {
             $localStorage.selectedData = $scope.selectedData
             $location.path("/projects/" + $localStorage.selectedData.id);
         };
 
+        //Redirect to project search
         $scope.projectsSearch = function () {
             $location.path("/projectSearch");
         };
 
+        //Redirect to project create
         $scope.projectsCreate = function () {
             $location.path("/projectsCreate");
         };
@@ -721,6 +842,7 @@ angular.module('App.controllers', [])
                 "height": screen_height
             });
 
+            //loading data into view
             $scope.title = $localStorage.selectedData.title;
             $scope.difficulty = $localStorage.selectedData.difficulty;
             $scope.youtube = $localStorage.selectedData.youtube;
@@ -732,6 +854,11 @@ angular.module('App.controllers', [])
             $scope.requirements = $localStorage.selectedData.requirements;
             $scope.class = $localStorage.selectedData.class;
             $scope.Instructions = $localStorage.selectedData.Instructions;
+            for (var i = 0; i < $localStorage.users.length; i++) {
+                if ($localStorage.users[i].id == $localStorage.selectedData.createdById) {
+                    $scope.CreatedBy = $localStorage.users[i].userName;
+                }
+            }
 
             var reqCount = 0;
             var resCountTotal = 0;
@@ -751,14 +878,14 @@ angular.module('App.controllers', [])
                 }
                 if ($localStorage.selectedData.Instructions[i].add) {
                     insCountTotal++;
-                } 
-            } 
+                }
+            }
 
             $scope.val1 = (reqCount / resCountTotal);
             $scope.val2 = (insCount / insCountTotal);
             $scope.progress = Math.round((($scope.val1 * 0.3) + ($scope.val2 * 0.7)) * 100);
-             
-            document.getElementById("progress").style.width = $scope.progress+"%";
+
+            document.getElementById("progress").style.width = $scope.progress + "%";
 
         };
 
@@ -772,6 +899,7 @@ angular.module('App.controllers', [])
                 if ($localStorage.datas[i].id == cId) {
                     $scope.isActive = true;
                     $localStorage.datas[i].isActive = true;
+                    $localStorage.datas[i]
                 }
             }
         };
@@ -790,11 +918,12 @@ angular.module('App.controllers', [])
             $location.path("/projects/" + id)
         };
 
-
+        //Initializing the object used to create the project
         $scope.initCreateProject = function () {
             $localStorage.lastId = $localStorage.lastId + 1;
             $scope.project = {
                 id: $localStorage.lastId,
+                createdById: $localStorage.loggedInUser.id,
                 title: "",
                 isDelete: false,
                 class: "default",
@@ -810,6 +939,7 @@ angular.module('App.controllers', [])
             };
         };
 
+        //Initializing the object used to edit the project
         $scope.initEditProject = function () {
             var currentId = $routeParams.id;
             if (currentId != undefined && currentId > 0) {
@@ -822,6 +952,7 @@ angular.module('App.controllers', [])
 
             $scope.project = {
                 id: $localStorage.selectedData.id,
+                createdById: $localStorage.loggedInUser.id,
                 title: $localStorage.selectedData.title,
                 isDelete: false,
                 class: $localStorage.selectedData.class,
@@ -880,6 +1011,7 @@ angular.module('App.controllers', [])
             $location.path("/projects");
         };
 
+        //Checkbox initialization for requirements
         $scope.checkboxReq = function (obj) {
             var reqCount = 0;
             var resCountTotal = 0;
@@ -907,6 +1039,8 @@ angular.module('App.controllers', [])
             $localStorage.selectedData.progress = $scope.progress;
             document.getElementById("progress").style.width = $scope.progress + "%";
         };
+
+        //Checkbox initialization for instructions
         $scope.checkboxIns = function (obj) {
             var reqCount = 0;
             var resCountTotal = 0;
@@ -934,6 +1068,7 @@ angular.module('App.controllers', [])
             $localStorage.selectedData.progress = $scope.progress;
             document.getElementById("progress").style.width = $scope.progress + "%";
         };
+
         $scope.submitUpdateProject = function () {
             var cId2 = $routeParams.id;
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
@@ -950,6 +1085,75 @@ angular.module('App.controllers', [])
                 }
             }
             $location.path("/projects");
+        };
+
+        $scope.collaborate = function () {
+            $location.path("/collaborate");
+        };
+
+        //Collaboration initialization
+        $scope.loadCollaboration = function () {
+            $scope.projectsByYou = false;
+            $scope.collaboration = false;
+            $scope.projectsByYouData = [];
+            $scope.collaborationData = [];
+
+            for (var i = 0; i < $localStorage.datas.length; i++) {
+                if ($localStorage.datas[i].createdById == $localStorage.loggedInUser.id && $localStorage.datas[i].isDelete == false) {
+                    $scope.projectsByYou = true;
+                    $scope.projectsByYouData.push($localStorage.datas[i]);
+                }
+                else {
+                    for (var j = 0; j < $localStorage.datas[i].members.length; j++) {
+                        if ($localStorage.datas[i].members[j].memberId == $localStorage.loggedInUser.id) {
+                            $scope.collaboration = true;
+                            $scope.collaborationData.push($localStorage.datas[i]);
+                        }
+                    }
+                }
+            }
+        };
+
+        $scope.removeMember = function (id) {
+            var currentId = $routeParams.id;
+            if (currentId != undefined && currentId > 0) {
+                for (var i = 0 ; i < $localStorage.datas.length ; i++) {
+                    if ($localStorage.datas[i].id == currentId) {
+                        if ($localStorage.loggedInUser.id == $localStorage.datas[i].createdById) {
+                            var temp = $localStorage.datas[i].members;
+                            var members = [];
+                            for (var j = 0; j < temp.length; j++) {
+                                if (temp[j].memberId != id) {
+                                    members.push(temp[j]);
+                                }
+                            }
+                            $localStorage.datas[i].members = members;
+                        }
+                        else {
+                            alert("Only the admin can remove members");
+                        }
+                    }
+                }
+                $scope.initCollaboration();
+            }
+        };
+
+        $scope.addMember = function () { 
+            var currentId = $routeParams.id;
+            if (currentId != undefined && currentId > 0) {
+                for (var i = 0 ; i < $localStorage.datas.length ; i++) {
+                    if ($localStorage.datas[i].id == currentId) { 
+                        for (var j = 0; j < $localStorage.users.length;j++)
+                        {
+                            if ($scope.memberDetails == $localStorage.users[j].id) {
+                                $localStorage.datas[i].members.push({memberId : $localStorage.users[j].id}); 
+                            } 
+                        }
+                        //console.log($localStorage.datas[i].members);
+                    }  
+                } 
+                $scope.initCollaboration();
+            }
         };
     }])
         //Search Controller
