@@ -737,7 +737,7 @@ angular.module('App.controllers', [])
                         $scope.nonMemberData = angular.copy($localStorage.users);
                         console.log($localStorage.datas[i].members);
                         var temp = $localStorage.datas[i].members;
-                        console.log("USERS");
+                        //console.log(temp);
                         console.log($localStorage.users);
                         for (var k = 0; k < $localStorage.users.length; k++) { 
                             if (temp.length > 0) {
@@ -747,12 +747,8 @@ angular.module('App.controllers', [])
                                     } 
                                 }
                             }
-                            else
-                            {
-                                $scope.memberData.push($localStorage.users[k]);
-                            }
                         } 
-                    }
+                    } 
                 }
 
                 //console.log($scope.memberData);
@@ -1197,8 +1193,8 @@ angular.module('App.controllers', [])
             }); 
         };
 
-        $scope.searchPage = function () {
-            $location.path("/search");
+        $scope.dashboard = function () {
+            $location.path("/dashboard");
         };
 
         $scope.searchResultsInit = function () {
