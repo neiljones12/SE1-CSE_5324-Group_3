@@ -1170,7 +1170,7 @@ angular.module('App.controllers', [])
             request.open("GET", url, true);
             request.onreadystatechange = function () {
                 //console.log(request);
-               
+                $scope.results = [];
                 if (request.readyState == 4) {
                     if (request.status == 200 || request.status == 0) { 
                         var s = request.response;
@@ -1191,6 +1191,7 @@ angular.module('App.controllers', [])
 
         $scope.loadResultPage = function () {
             $scope.$apply(function () {
+                $scope.displayResults = '';
                 $scope.displayResults = $scope.results;
                 console.log($scope.displayResults);
             }); 
