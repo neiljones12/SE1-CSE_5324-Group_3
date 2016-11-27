@@ -1,0 +1,51 @@
+﻿<div id="page-transitions" ng-init="searchResultsInit()">
+
+    <div class="page-preloader page-preloader-dark">
+        <img class="page-preload" src="../img/preload.gif">
+    </div>
+
+    <div id="page-content" class="page-content header-clear fadeIn show-containers">
+        <div id="page-content-scroll" style="right: 0px;">
+
+            <div class="heading-strip bg-4">
+                <h3>Search Results</h3>
+                <p>for {{searchText}}</p> 
+                <div class="overlay dark-overlay"></div>
+            </div>
+
+            <div class="decoration decoration-margins"></div> 
+            <div class="content no-material">
+                <div class="portfolio portfolio-two-item">
+                    <div ng-repeat="r in displayResults">
+                        <div class="portfolio-item">
+                            <img class="preload-image responsive-image" data-original="" alt="img" src="" style="display: block;">
+                            <h1>Portfolio Item 1</h1>
+                            <p>
+                                Nam dictum, sapien et auctor bibendum, purus lectus porttitor,
+                                at venenatis libero nunc non tortor aenean dignissim id auctor.
+                            </p>
+                            <div class="portfolio-icons">
+                                <a href="#" class="portfolio-icon scale-hover bg-green-dark"><i class="fa fa-link"></i></a>
+                                <a href="#" class="portfolio-icon scale-hover bg-red-dark"><i class="fa fa-heart"></i></a>
+                                <a href="#" class="portfolio-icon scale-hover bg-blue-dark"><i class="fa fa-share-alt"></i></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="decoration"></div>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="decoration decoration-margins"></div>
+
+            <div class="footer footer-dark">
+                <a href="#" class="footer-logo scale-hover"></a>
+                <p>
+                    <button class="btn btn-default" ng-click="searchPage()"> Back to search</button>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -4,22 +4,46 @@
         <img class="page-preload" src="../img/preload.gif">
     </div>
 
-    <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
-        <div id="page-content" class="page-content search">
-            <div class="top_promo_block" id="promo_head" style="height: 444px;">
-                <div class="start_descrition">
-                    <h1 style="padding-top:50px">Product Search<span></span></h1>
-                    <span>What are you searching for?</span>
-                    <div class="search_promo">
-                        <div class="input-group">
-                            <input type="text" ng-model="searchText" class="form-control" aria-label="Search">
-                            <div class="input-group-btn btn_promo_search">
-                                <button type="submit" class="btn btn-success" id="submit">Search</button>
+    <div id="page-content">
+        <div id="page-content-scroll">
+            <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
+                <div id="" class="page-content search">
+                    <div class="top_promo_block" id="promo_head" style="height: 444px;">
+                        <div class="start_descrition">
+                            <h1 style="padding-top:50px">Product Search<span></span></h1>
+                            <span>What are you searching for? </span>
+                            <div class="search_promo">
+                                <div class="input-group">
+                                    <input type="text" ng-model="searchText" class="form-control" aria-label="Search">
+                                    <div class="input-group-btn btn_promo_search">
+                                        <button type="submit" class="btn btn-success" id="submit">Search</button>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="container">
+                                <div ng-hide="displayResults">
+                                    <h1 style="color:black">NO RESULTS</h1>
+                                </div>
+                                <div  ng-show="displayResults">
+                                    <h1 style="color:black">SHOWING RESULTS FOR {{searchText}}<span style="color:red"></span></h1>
+                                </div> 
+                                <div ng-repeat="r in displayResults"> 
+                                    <div class="row"> 
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <a href="{{r.viewItemURL[0]}}">{{r.title[0]}}</a><hr />
+                                                    <img src="{{r.galleryURL[0]}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div> 
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </div> 
+                    </div>  
                 </div>
-            </div>
-        </div> 
-    </form>
+            </form>
+        </div>
+    </div>
 </div>

@@ -37,6 +37,9 @@ angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.servi
         }).when('/search', {
             controller: 'SearchCtrl',
             templateUrl: 'partials/search.html'
+        }).when('/searchResults', {
+            controller: 'SearchCtrl',
+            templateUrl: 'partials/searchResults.html'
         }).when('/tools', {
             controller: 'ToolsCtrl',
             templateUrl: 'partials/tools.html'

@@ -1143,13 +1143,65 @@ angular.module('App.controllers', [])
         };
     }])
         //Search Controller
-    .controller('SearchCtrl', ['$scope', function ($scope) {
+    .controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
         //Initializing search
         $scope.searchInit = function () {
             $scope.searchText = "";
+            $scope.resultData = false;
+            $scope.displayResults = "";
         };
+        
+        $scope.results = [];
 
         $scope.submitSearch = function () {
+            var url = "http://svcs.ebay.com/services/search/FindingService/v1";
+            url += "?OPERATION-NAME=findItemsByKeywords";
+            url += "&SERVICE-VERSION=1.0.0";
+            url += "&SECURITY-APPNAME=mirbashe-testebay-PRD-845f6444c-24b0acab";
+            url += "&GLOBAL-ID=EBAY-US";
+            url += "&RESPONSE-DATA-FORMAT=JSON";
+            url += "&callback=_cb_findItemsByKeywords";
+            url += "&REST-PAYLOAD";
+            url += "&paginationInput.entriesPerPage=10"; 
+            url += "&keywords=" + encodeURI($scope.searchText);
+            $scope.resultData = true; 
+            //console.log(url); 
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.onreadystatechange = function () {
+                //console.log(request);
+               
+                if (request.readyState == 4) {
+                    if (request.status == 200 || request.status == 0) { 
+                        var s = request.response;
+                        var str = s.substring('/**/_cb_findItemsByKeywords('.length);
+                        str = str.substring(')', str.length - 1);
+                        var data = JSON.parse(str);
+                        $scope.result = data.findItemsByKeywordsResponse[0].searchResult[0].item; 
+                        for (var i = 0; i < $scope.result.length; i++)
+                        {
+                            $scope.results.push($scope.result[i]); 
+                        }
+                        $scope.loadResultPage();
+                    }
+                }
+            }
+            request.send();
+        };
+
+        $scope.loadResultPage = function () {
+            $scope.$apply(function () {
+                $scope.displayResults = $scope.results;
+                console.log($scope.displayResults);
+            }); 
+        };
+
+        $scope.searchPage = function () {
+            $location.path("/search");
+        };
+
+        $scope.searchResultsInit = function () {
 
         };
-    }]);
+
+    }]); 
