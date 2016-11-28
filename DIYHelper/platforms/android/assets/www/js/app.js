@@ -1,4 +1,4 @@
-angular.module('App', ['ngRoute', 'ngStorage', 'simple-autocomplete', 'App.services', 'App.controllers', 'youtube-embed','ngOpenFB'])
+angular.module('App', ['ngRoute', 'ngStorage','ngCouchbaseLite', 'simple-autocomplete', 'App.services', 'App.controllers', 'youtube-embed','ngOpenFB'])
     .config(function ($routeProvider) {
         $routeProvider
         .when('/', {
