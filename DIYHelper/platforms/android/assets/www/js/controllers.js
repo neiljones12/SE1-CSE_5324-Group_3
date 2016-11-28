@@ -175,7 +175,7 @@ angular.module('App.controllers', [])
             $scope.datas = $localStorage.datas;
             $scope.loggedInUserId = $localStorage.loggedInUser.id;
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
-                if ($localStorage.datas[i].createdById == $localStorage.loggedInUser.id && $localStorage.datas[i].isActive) {
+                if ($localStorage.datas[i].createdById == $localStorage.loggedInUser.id) {
                     $scope.isProjectStart = true;
                 }
                 if($localStorage.datas[i].members.length > 0)
@@ -343,7 +343,7 @@ angular.module('App.controllers', [])
         };
 
         $scope.loadProjectResults = function () {
-
+            var myVar = setInterval($scope.getProjectResults(), 500);
             var currentId = $routeParams.id;
             $scope.progress = 0;
             if (currentId != undefined && currentId > 0) {
