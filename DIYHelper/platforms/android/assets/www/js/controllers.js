@@ -225,6 +225,32 @@ angular.module('App.controllers', [])
             $location.path("/projects/" + currentId);
         };
 
+        $scope.getProjectsCollaboration = function () {
+            var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
+            console.log(url);
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.onreadystatechange = function () {
+                //console.log(request);
+                if (request.readyState == 4) {
+                    $scope.dataResponse = request.responseText;
+                    $scope.$apply(function () {
+                        $scope.datas = '';
+                        $localStorage.datas = '';
+                        $scope.datas = $scope.dataResponse;
+                        //console.log($scope.datas);
+                        if ($scope.datas != '') {
+                            $localStorage.datas = JSON.parse(JSON.parse($scope.datas));
+                            //$localStorage.datas = $scope.datas;
+                        }
+
+                        $scope.initCollaboration();
+                    });
+                }
+            }
+            request.send();
+        };
+
         //collaboration initialization
         $scope.initCollaboration = function () {
             $scope.memberDetails = "";
@@ -295,8 +321,37 @@ angular.module('App.controllers', [])
             $location.path("/projectsCreate");
         };
 
+
         //initialization function called when a search result needs to be loaded
+
+        $scope.getProjectResults = function () {
+            var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
+            console.log(url);
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.onreadystatechange = function () {
+                //console.log(request);
+                if (request.readyState == 4) {
+                    $scope.dataResponse = request.responseText;
+                    $scope.$apply(function () {
+                        $scope.datas = '';
+                        $localStorage.datas = '';
+                        $scope.datas = $scope.dataResponse;
+                        //console.log($scope.datas);
+                        if ($scope.datas != '') {
+                            $localStorage.datas = JSON.parse(JSON.parse($scope.datas));
+                            //$localStorage.datas = $scope.datas;
+                        }
+
+                        $scope.loadProjectResults();
+                    });
+                }
+            }
+            request.send();
+        };
+
         $scope.loadProjectResults = function () {
+
             var currentId = $routeParams.id;
             $scope.progress = 0;
             if (currentId != undefined && currentId > 0) {
@@ -398,9 +453,35 @@ angular.module('App.controllers', [])
             $location.path("/projects/" + id)
         };
 
+        $scope.getinitCreateProject = function () {
+            var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
+            console.log(url);
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.onreadystatechange = function () {
+                //console.log(request);
+                if (request.readyState == 4) {
+                    $scope.dataResponse = request.responseText;
+                    $scope.$apply(function () {
+                        $scope.datas = '';
+                        $localStorage.datas = '';
+                        $scope.datas = $scope.dataResponse;
+                        //console.log($scope.datas);
+                        if ($scope.datas != '') {
+                            $localStorage.datas = JSON.parse(JSON.parse($scope.datas));
+                            //$localStorage.datas = $scope.datas;
+                        }
+
+                        $scope.initCreateProject();
+                    });
+                }
+            }
+            request.send();
+        };
+
         //Initializing the object used to create the project
         $scope.initCreateProject = function () {
-            $localStorage.lastId = $localStorage.lastId + 1;
+            $localStorage.lastId = $localStorage.datas.length + 1;
             $scope.project = {
                 id: $localStorage.lastId,
                 createdById: $localStorage.loggedInUser.id,
@@ -488,7 +569,7 @@ angular.module('App.controllers', [])
                 alert(jqXHR.responseText || textStatus);
             });
 
-            $location.path("/projects/" + $scope.project.id);
+            $location.path("/projects/" + $localStorage.lastId);
         };
 
         $scope.delete = function () {
@@ -580,6 +661,16 @@ angular.module('App.controllers', [])
             $scope.progress = Math.round((($scope.val1 * 0.3) + ($scope.val2 * 0.7)) * 100);
             $localStorage.selectedData.progress = $scope.progress;
             document.getElementById("progress").style.width = $scope.progress + "%";
+
+            $.ajax({
+                type: "POST",
+                url: "http://diyhelper.azurewebsites.net/api/values",
+                data: { '': JSON.stringify($localStorage.datas) }
+            }).done(function (data) {
+                console.log(data);
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText || textStatus);
+            });
         };
 
         $scope.submitUpdateProject = function () {
@@ -597,6 +688,17 @@ angular.module('App.controllers', [])
                     $localStorage.datas[i].Instructions = $scope.project.Instructions;
                 }
             }
+
+            $.ajax({
+                type: "POST",
+                url: "http://diyhelper.azurewebsites.net/api/values",
+                data: { '': JSON.stringify($localStorage.datas) }
+            }).done(function (data) {
+                console.log(data);
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText || textStatus);
+            });
+
             $location.path("/projects");
         };
 
@@ -648,6 +750,17 @@ angular.module('App.controllers', [])
                         }
                     }
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://diyhelper.azurewebsites.net/api/values",
+                    data: { '': JSON.stringify($localStorage.datas) }
+                }).done(function (data) {
+                    console.log(data);
+                }).error(function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText || textStatus);
+                });
+
                 $scope.initCollaboration();
             }
         };
@@ -666,6 +779,17 @@ angular.module('App.controllers', [])
                         //console.log($localStorage.datas[i].members);
                     }
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://diyhelper.azurewebsites.net/api/values",
+                    data: { '': JSON.stringify($localStorage.datas) }
+                }).done(function (data) {
+                    console.log(data);
+                }).error(function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText || textStatus);
+                });
+
                 $scope.initCollaboration();
             }
         };
