@@ -31,23 +31,25 @@
                     </div>
                 </div>
             </div>
-            <div class="heading-text">
-                <h4>Projects you are a part of</h4>
-                <div class="heading-line-1"></div>
-                <i class="fa fa-star-o color-red-dark"></i>
-                <div class="heading-line-2"></div>
-                <div ng-show="collaboration">
-                    <div ng-repeat="p in collaborationData">
-                        <div ng-click="openProject(p.id)">{{p.title}}</div>
-                        <br />
+            <div class="content material-no-bottom material-half-top">
+                <div class="heading-text">
+                    <h4>Projects you are a part of</h4>
+                    <div class="heading-line-1"></div>
+                    <i class="fa fa-star-o color-red-dark"></i>
+                    <div class="heading-line-2"></div>
+                    <div ng-show="collaboration">
+                        <div ng-repeat="p in collaborationData">
+                            <div ng-click="openProject(p.id)">{{p.title}}</div>
+                            <br />
+                        </div>
+                    </div>
+                    <div ng-hide="collaboration">
+                        <p>You are not a part of any collaboration</p>
                     </div>
                 </div>
-                <div ng-hide="collaboration">
-                    <p>You are not a part of any collaboration</p>
-                </div>
             </div>
-        </div> 
         </div>
-    </div> 
+    </div>
+</div>
 
 

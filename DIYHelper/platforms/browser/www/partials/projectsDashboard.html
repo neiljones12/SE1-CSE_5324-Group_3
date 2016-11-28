@@ -32,46 +32,89 @@
                             </a>
                         </li>
                         <li>
-                            <a ng-click="collaborate()">
+                            <!--<a ng-click="collaborate()">
                                 <i class="fa fa-th-list bg-blue-dark"></i>
                                 <em>My Projects</em>
+                            </a>-->
+                            <a ng-click="dashboard()">
+                                <i class="fa fa-home bg-blue-dark"></i>
+                                <em>Go back</em>
                             </a>
-                        </li> 
+                        </li>
                     </ul>
                     <div class="clear"></div>
                     <div class="content no-material no-bottom"><div class="deco"></div></div>
                     <div class="landing-header no-bottom">
-                        <h1 style="color:white">PROJECTS STARTED</h1>  
+                        <h1 style="color:white">PROJECTS CREATED</h1>
                         <div class="content no-material no-bottom"><div class="deco"></div></div>
                         <div ng-show="isProjectStart">
                             <div ng-repeat="d in datas">
-                                <div ng-if="d.isActive">
-                                    <div class="content no-material" ng-click="openProject(d.id)">
-                                        <div ng-if="d.progress < 50">
-                                            <div class="notification-large bg-red-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                <div ng-if="d.createdById == loggedInUserId">
+                                    <div>
+                                        <div class="content no-material" ng-click="openProject(d.id)">
+                                            <div ng-if="d.progress < 50">
+                                                <div class="notification-large bg-red-light">
+                                                    <h1 class="text-left">{{d.title}}</h1>
+                                                    <p class="text-left">
+                                                        Progress : {{d.progress}}
+                                                    </p>
+                                                    <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </div>
+                                            <div ng-if="d.progress >= 50 && d.progress <= 79">
+                                                <div class="notification-large bg-orange-light">
+                                                    <h1 class="text-left">{{d.title}}</h1>
+                                                    <p class="text-left">
+                                                        Progress : {{d.progress}}
+                                                    </p>
+                                                    <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </div>
+                                            <div ng-if="d.progress >= 80">
+                                                <div class="notification-large bg-green-light">
+                                                    <h1 class="text-left">{{d.title}}</h1>
+                                                    <p class="text-left">
+                                                        Progress : {{d.progress}}
+                                                    </p>
+                                                    <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div ng-if="d.progress >= 50 && d.progress <= 79">
-                                            <div class="notification-large bg-orange-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                        <div ng-if="d.progress >= 80">
-                                            <div class="notification-large bg-green-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                                <div ng-repeat="m in d.members">
+                                    <div ng-if="m.memberId == loggedInUserId">
+                                        <div>
+                                            <h1 style="color:white">PROJECT MEMBER</h1>
+                                            <div class="content no-material no-bottom"><div class="deco"></div></div>
+                                            <div class="content no-material" ng-click="openProject(d.id)">
+                                                <div ng-if="d.progress < 50">
+                                                    <div class="notification-large bg-red-light">
+                                                        <h1 class="text-left">{{d.title}}</h1>
+                                                        <p class="text-left">
+                                                            Progress : {{d.progress}}
+                                                        </p>
+                                                        <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="d.progress >= 50 && d.progress <= 79">
+                                                    <div class="notification-large bg-orange-light">
+                                                        <h1 class="text-left">{{d.title}}</h1>
+                                                        <p class="text-left">
+                                                            Progress : {{d.progress}}
+                                                        </p>
+                                                        <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="d.progress >= 80">
+                                                    <div class="notification-large bg-green-light">
+                                                        <h1 class="text-left">{{d.title}}</h1>
+                                                        <p class="text-left">
+                                                            Progress : {{d.progress}}
+                                                        </p>
+                                                        <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +123,7 @@
                         </div>
                         <div ng-hide="isProjectStart">
                             <p>No projects bookmarked</p>
-                        </div> 
+                        </div>
                     </div>
 
                     <div class="content no-material no-bottom"><div class="deco"></div></div>
@@ -89,7 +132,7 @@
                         <div class="button" ng-click="dashboard()">
                             <i class="fa fa-home" aria-hidden="true"></i>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="landing-overlay"></div>
                 <div class="background"></div>

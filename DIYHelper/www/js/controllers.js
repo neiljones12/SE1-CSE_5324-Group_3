@@ -88,56 +88,11 @@ angular.module('App.controllers', [])
         $scope.LogOut = function () {
             $localStorage.loggedInUser = null;
             $location.path("/login");
-        };
-
-        $scope.getProjects = function () {
-            var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
-            console.log(url);
-            var request = new XMLHttpRequest();
-            request.open("GET", url, true);
-            request.onreadystatechange = function () {
-                //console.log(request);
-                if (request.readyState == 4) {
-                    $scope.dataResponse = request.responseText;
-                    $scope.$apply(function () {
-                        $scope.datas = '';
-                        $localStorage.datas = '';
-                        $scope.datas = $scope.dataResponse;
-                        //console.log($scope.datas);
-                        if ($scope.datas != '') {
-                            $localStorage.datas = JSON.parse(JSON.parse($scope.datas));
-                            //$localStorage.datas = $scope.datas;
-                        }
-
-                        $scope.loadDashbaord();
-                    });
-                }
-            }
-            request.send();
-        };
+        }; 
 
         $scope.loadDashbaord = function () {
             $scope.username = $localStorage.loggedInUser.username;
             $scope.isProjectStart = false;
-            //loading the data from a json file
-
-            //$http.get('js/data.json').success(function (data) {
-            //    $scope.datas = data;
-            //}); 
-            //console.log($localStorage.datas);
-            if ($localStorage.datas == undefined) {
-                $localStorage.datas = $scope.datas;
-                $localStorage.lastId = 5;
-            }
-            else {
-                $scope.datas = $localStorage.datas;
-            }
-            //console.log($localStorage.datas.length);
-            for (var i = 0 ; i < $localStorage.datas.length ; i++) {
-                if ($localStorage.datas[i].isActive) {
-                    $scope.isProjectStart = true;
-                }
-            }
 
             //To enable slider on homescreen
             var swiper_store_thumbnail_slider = new Swiper('.home-round-slider', {
@@ -187,14 +142,51 @@ angular.module('App.controllers', [])
             $location.path("/dashboard");
         };
 
+        $scope.getProjects = function () {
+            var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
+            console.log(url);
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.onreadystatechange = function () {
+                //console.log(request);
+                if (request.readyState == 4) {
+                    $scope.dataResponse = request.responseText;
+                    $scope.$apply(function () {
+                        $scope.datas = '';
+                        $localStorage.datas = '';
+                        $scope.datas = $scope.dataResponse;
+                        //console.log($scope.datas);
+                        if ($scope.datas != '') {
+                            $localStorage.datas = JSON.parse(JSON.parse($scope.datas));
+                            //$localStorage.datas = $scope.datas;
+                        }
+
+                        $scope.loadProjects();
+                    });
+                }
+            }
+            request.send();
+        };
+
         //initialization function called when the projects section is loaded
         $scope.loadProjects = function () {
             $scope.selectedData = null;
             $scope.isProjectStart = false;
             $scope.datas = $localStorage.datas;
+            $scope.loggedInUserId = $localStorage.loggedInUser.id;
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
-                if ($localStorage.datas[i].isActive) {
+                if ($localStorage.datas[i].createdById == $localStorage.loggedInUser.id && $localStorage.datas[i].isActive) {
                     $scope.isProjectStart = true;
+                }
+                if($localStorage.datas[i].members.length > 0)
+                {
+                    for(var j=0;j<$localStorage.datas[i].members.length;j++)
+                    {
+                        if ($localStorage.datas[i].members[j].memberId == $scope.loggedInUserId)
+                        {
+                            $scope.isProjectStart = true;
+                        }
+                    }
                 }
             }
         };
@@ -394,6 +386,11 @@ angular.module('App.controllers', [])
                 }
             }
 
+            if ($localStorage.selectedData.createdById == $localStorage.loggedInUser.id)
+            {
+                $scope.isActive = true;
+            }
+
             var reqCount = 0;
             var resCountTotal = 0;
             var insCount = 0;
@@ -430,11 +427,27 @@ angular.module('App.controllers', [])
         $scope.homescreenToggleOn = function () {
             var cId = $routeParams.id;
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
+                var data = [];
                 if ($localStorage.datas[i].id == cId) {
+                    $localStorage.lastId = $localStorage.datas.length + 1;
                     $scope.isActive = true;
-                    $localStorage.datas[i].
-                    $localStorage.datas[i].isActive = true;
-                    $localStorage.datas[i].createdById = $localStorage.loggedInUser.id;
+                    data = angular.copy($localStorage.datas[i]);
+                    data.id = $localStorage.lastId; 
+                    data.isActive = true;
+                    data.createdById = $localStorage.loggedInUser.id;  
+
+                    $localStorage.datas.push(data);
+                    $.ajax({
+                        type: "POST",
+                        url: "http://diyhelper.azurewebsites.net/api/values",
+                        data: { '': JSON.stringify($localStorage.datas) }
+                    }).done(function (data) {
+                        console.log(data);
+                    }).error(function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR.responseText || textStatus);
+                    });
+
+                    $location.path("/projects/" + $localStorage.lastId);
                 }
             }
         };
@@ -445,6 +458,16 @@ angular.module('App.controllers', [])
                 if ($localStorage.datas[i].id == cId1) {
                     $scope.isActive = false;
                     $localStorage.datas[i].isActive = false;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://diyhelper.azurewebsites.net/api/values",
+                        data: { '': JSON.stringify($localStorage.datas) }
+                    }).done(function (data) {
+                        console.log(data);
+                    }).error(function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR.responseText || textStatus);
+                    });
                 }
             }
         };

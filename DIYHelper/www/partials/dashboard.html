@@ -1,4 +1,4 @@
-<div id="page-transitions" ng-init="getProjects()">
+<div id="page-transitions" ng-init="loadDashbaord()">
     <div class="page-preloader page-preloader-dark">
         <img class="page-preload" src="../img/preload.gif">
     </div>
@@ -6,11 +6,10 @@
     <div id="page-content" class="">
         <div id="page-content-scroll">
             <div class="content">
-                <button class="button button-red pull-right" ng-click="LogOut()">Logout</button>
                 <h1>{{username}}'s Dashboard</h1>
             </div>
             <div class="decoration decoration-margins"></div>
-            <!--Enables this element to be scrolled --> 
+            <!--Enables this element to be scrolled -->
             <div class="home-round-slider full-bottom">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -22,66 +21,14 @@
                         <div class="dashboard-img-2b" ng-click="search()"></div>
                         <h3>Search</h3>
                         <em>A worldwide search for products required for your DIY project</em>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="decoration decoration-margins"></div>
-
-            <div class="content material-no-bottom material-half-top">
-                <div class="heading-text">
-                    <div ng-controller="ProjectsCtrl">
-                        <h1 style="padding-top:15px">Projects Bookmarked<span></span></h1> 
-                        <div ng-show="isProjectStart">
-                            <div ng-repeat="d in datas">
-                                <div ng-if="d.isActive">
-                                    <div class="content no-material" ng-click="openProject(d.id)">
-                                        <div ng-if="d.progress < 50">
-                                            <div class="notification-large bg-red-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                        <div ng-if="d.progress >= 50 && d.progress <= 79">
-                                            <div class="notification-large bg-orange-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                        <div ng-if="d.progress >= 80">
-                                            <div class="notification-large bg-green-light">
-                                                <h1 class="text-left">{{d.title}}</h1>
-                                                <p class="text-left">
-                                                    Progress : {{d.progress}}
-                                                </p>
-                                                <a href="#" class="hide-notification"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div ng-hide="isProjectStart">
-                            <p>No projects bookmarked</p>
-                        </div>
                     </div>
                 </div>
-                <div class="center-socials full-bottom">
-                    <a href="#" class="icon icon-round icon-s no-border facebook-bg"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="icon icon-round icon-s no-border google-bg"><i class="fa fa-google-plus"></i></a>
-                    <a href="#" class="icon icon-round icon-s no-border twitter-bg"><i class="fa fa-twitter"></i></a>
-                </div>
             </div>
 
-            <div class="decoration decoration-margins"></div>
-
-            <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+            <div class="decoration decoration-margins"></div> 
+            <div class="content">
+                <button class="button button-red" ng-click="LogOut()">Logout</button>
+            </div> 
         </div>
     </div>
 </div>
