@@ -318,7 +318,7 @@ angular.module('App.controllers', [])
 
         $scope.getProjectResults = function () {
             var url = 'http://diyhelper.azurewebsites.net/api/values/projects';
-            console.log(url);
+            //console.log(url);
             var request = new XMLHttpRequest();
             request.open("GET", url, true);
             request.onreadystatechange = function () {
