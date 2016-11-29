@@ -76,6 +76,17 @@ angular.module('App.controllers', [])
                             "password": $scope.password
                         };
                         $localStorage.users.push(user);
+                         
+                        $.ajax({
+                            type: "PUT",
+                            url: "http://diyhelper.azurewebsites.net/api/values/1",
+                            data: { '': JSON.stringify($localStorage.users) }
+                        }).done(function (data) {
+                            console.log(data);
+                        }).error(function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.responseText || textStatus);
+                        });
+
                         $localStorage.loggedInUser = user;
                         $location.path("/dashboard");
                     }
