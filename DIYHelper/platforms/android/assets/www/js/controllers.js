@@ -181,6 +181,7 @@ angular.module('App.controllers', [])
 
         //initialization function called when the projects section is loaded
         $scope.loadProjects = function () {
+            var myVar = setInterval($scope.getProjects(), 2000);
             $scope.selectedData = null;
             $scope.isProjectStart = false;
             $scope.datas = $localStorage.datas;
@@ -354,7 +355,7 @@ angular.module('App.controllers', [])
         };
 
         $scope.loadProjectResults = function () {
-            var myVar = setInterval($scope.getProjectResults(), 500);
+            var myVar = setInterval($scope.getProjectResults(), 2000);
             var currentId = $routeParams.id;
             $scope.progress = 0;
             if (currentId != undefined && currentId > 0) {
