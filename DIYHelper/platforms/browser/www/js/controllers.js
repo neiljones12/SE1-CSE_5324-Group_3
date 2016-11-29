@@ -180,12 +180,12 @@ angular.module('App.controllers', [])
         };
 
         //initialization function called when the projects section is loaded
-        $scope.loadProjects = function () {
-            var myVar = setInterval($scope.getProjects(), 5000);
+        $scope.loadProjects = function () {  
             $scope.selectedData = null;
             $scope.isProjectStart = false;
             $scope.datas = $localStorage.datas;
             $scope.loggedInUserId = $localStorage.loggedInUser.id;
+            console.log($localStorage.datas);
             for (var i = 0 ; i < $localStorage.datas.length ; i++) {
                 if ($localStorage.datas[i].createdById == $localStorage.loggedInUser.id) {
                     $scope.isProjectStart = true;
@@ -264,12 +264,13 @@ angular.module('App.controllers', [])
                 for (var i = 0 ; i < $localStorage.datas.length ; i++) {
                     if ($localStorage.datas[i].id == currentId) {
                         $localStorage.selectedData = $localStorage.datas[i];
+                        //console.log("SELECTED DATA " + $localStorage.selectedData);
                         $scope.memberData = [];
                         $scope.nonMemberData = angular.copy($localStorage.users);
-                        console.log($localStorage.datas[i].members);
-                        var temp = $localStorage.datas[i].members;
+                        console.log($localStorage.selectedData);
+                        var temp = $localStorage.selectedData.members;
                         //console.log(temp);
-                        console.log($localStorage.users);
+                        //console.log($localStorage.users);
                         for (var k = 0; k < $localStorage.users.length; k++) {
                             if (temp.length > 0) {
                                 for (var j = 0; j < temp.length; j++) {
@@ -296,6 +297,8 @@ angular.module('App.controllers', [])
             $scope.adminUsername = "";
             for (var i = 0; i < $localStorage.users.length; i++) {
                 if ($localStorage.users[i].id == $localStorage.selectedData.createdById) {
+                    console.log("C: "+$localStorage.selectedData.createdById);
+                    console.log("I: "+$localStorage.loggedInUser.id);
                     if ($localStorage.loggedInUser.id == $localStorage.selectedData.createdById) {
                         $scope.isAddMembers = true;
                     }
@@ -354,8 +357,7 @@ angular.module('App.controllers', [])
             request.send();
         };
 
-        $scope.loadProjectResults = function () {
-            var myVar = setInterval($scope.getProjectResults(), 5000);
+        $scope.loadProjectResults = function () { 
             var currentId = $routeParams.id;
             $scope.progress = 0;
             if (currentId != undefined && currentId > 0) {
@@ -516,6 +518,7 @@ angular.module('App.controllers', [])
 
         //Initializing the object used to create the project
         $scope.initCreateProject = function () {
+            console.log($localStorage.loggedInUser.id);
             $localStorage.lastId = $localStorage.datas.length + 1;
             $scope.project = {
                 id: $localStorage.lastId,
@@ -531,7 +534,8 @@ angular.module('App.controllers', [])
                 isActive: false,
                 progress: "0",
                 requirements: [],
-                Instructions: []
+                Instructions: [],
+                members: []
             };
         };
 
